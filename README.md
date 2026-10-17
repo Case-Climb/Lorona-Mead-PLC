@@ -60,7 +60,9 @@ shared/blog.ts         ← Post format, Markdown rendering, schema markup
 scripts/
   generate-blog-post.ts      ← Writes new posts with Claude
   vite-plugin-blog-seo.ts    ← Build step: sitemap.xml, RSS, prerendered post pages
-.github/workflows/publish-blog.yml ← Publishes 12 posts a month
+.github/workflows/publish-blog.yml ← Manual "publish now" button
+.github/workflows/daily-rebuild.yml ← Daily Vercel rebuild for scheduled posts
+docs/blog-automation.md            ← Grok prompt + Claude Code monthly runbook
 vercel.json            ← Vercel deployment config
 ```
 
@@ -76,16 +78,19 @@ vercel.json            ← Vercel deployment config
 
 ## Automated Blog
 
-A GitHub Actions workflow (`.github/workflows/publish-blog.yml`) publishes **12 posts a month**, on the 1st, 3rd, 6th, 8th, 11th, 13th, 16th, 18th, 21st, 23rd, 26th and 28th at 8:17 AM Arizona time. Each run:
+**How posts get scheduled:** once a month, a Grok scheduled task plans the next month's 12 posts (topics plus publish dates on the 1st, 3rd, 6th, 8th, 11th, 13th, 16th, 18th, 21st, 23rd, 26th and 28th) and sends the plan to Claude Code. Claude Code writes all 12 posts in one session, reviews them, and pushes them with future dates. Each post stays hidden until its date, and a daily rebuild adds it to the sitemap and RSS that morning. The Grok prompt and Claude Code's step-by-step instructions are in [`docs/blog-automation.md`](docs/blog-automation.md).
 
-1. Takes the next unused topic from `client/src/content/blog-topics.json` (when the queue is empty, Claude picks a new topic that doesn't duplicate existing posts).
+For each post, the generator (`pnpm blog:generate`):
+
+1. Takes the next topic from `client/src/content/blog-topics.json` (`--scheduled` limits it to topics with a `publishDate`).
 2. Runs **Claude Code** headless, signed in with the firm's **Claude Pro** subscription (no paid API needed), to write a 1,200–1,700 word article with a title, meta description, FAQs and links to the firm's own practice-area, city, and blog pages.
 3. Checks the draft (length, headings, only valid internal links, no raw HTML, no duplicate slug/title) and asks for a rewrite once if it fails.
-4. Saves it as `client/src/content/blog/<slug>.md` with the topic's featured image, type-checks and builds the site, and commits. Vercel deploys the commit.
+4. Saves it as `client/src/content/blog/<slug>.md`, dated with the topic's `publishDate` and using its featured image.
 
 ### One-time setup
 
-1. **Claude Pro token:** on any computer with Claude Code installed (`npm install -g @anthropic-ai/claude-code`), run `claude setup-token` and sign in with the Claude Pro account. Copy the token it prints, then add it in GitHub → *Settings → Secrets and variables → Actions → New repository secret* as `CLAUDE_CODE_OAUTH_TOKEN`. The token lasts about a year; repeat this step when it expires (the workflow run will fail and GitHub emails you).
+1. **Daily rebuild:** add the `VERCEL_DEPLOY_HOOK` secret (Vercel → Project Settings → Git → Deploy Hooks → create a hook for `main`) so `.github/workflows/daily-rebuild.yml` can refresh the sitemap and search-engine pages each morning.
+1. **Claude Pro token (only for the manual GitHub workflow):** on any computer with Claude Code installed (`npm install -g @anthropic-ai/claude-code`), run `claude setup-token` and sign in with the Claude Pro account. Copy the token it prints, then add it in GitHub → *Settings → Secrets and variables → Actions → New repository secret* as `CLAUDE_CODE_OAUTH_TOKEN`. The token lasts about a year; repeat this step when it expires (the workflow run will fail and GitHub emails you).
 2. **Branch permissions:** the workflow pushes to `main` with the built-in `GITHUB_TOKEN`. If `main` is protected, either allow GitHub Actions to push or use review mode (below).
 3. **Optional repository variables** (same settings page, *Variables* tab):
    - `BLOG_PUBLISH_MODE` = `pull-request` to have each post opened as a pull request for an attorney to review and merge, instead of publishing directly. This also requires *Settings → Actions → General → Allow GitHub Actions to create and approve pull requests*.
@@ -99,7 +104,7 @@ Every queued topic has a featured image in `client/public/blog-images/<topic-id>
 
 ### Day-to-day
 
-- **Run it now / backfill:** *Actions → Publish blog post → Run workflow*, and set how many posts (1–12) and the mode.
+- **Run it now / backfill:** *Actions → Publish blog post → Run workflow* publishes the next queued topic immediately (set how many posts, 1–12, and the mode).
 - **Steer topics:** edit, reorder, or add entries in `client/src/content/blog-topics.json`. Each post records the `topicId` it was written from.
 - **Edit or remove a post:** edit or delete its Markdown file. Add `"updated": "YYYY-MM-DD"` to the frontmatter after a significant revision.
 - **Write a post by hand:** add a Markdown file with the same frontmatter fields. A post with a future `date` stays hidden until that day.

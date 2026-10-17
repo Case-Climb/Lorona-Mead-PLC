@@ -5,6 +5,7 @@
  *
  *   pnpm blog:generate              # one post
  *   pnpm blog:generate --count 3    # several
+ *   pnpm blog:generate --count 12 --scheduled  # write the month's planned topics
  *   pnpm blog:generate --dry-run    # show the next topic + prompt only
  *
  * By default it runs Claude Code headless, so it works with a Claude Pro/Max
@@ -45,6 +46,7 @@ type Topic = {
   category: string;
   location: string;
   notes?: string;
+  publishDate?: string; // YYYY-MM-DD; the post stays hidden on the site until then
   image?: string;
   imageAlt?: string;
 };
@@ -76,14 +78,25 @@ function readExistingPosts(): ExistingPost[] {
     });
 }
 
-function nextTopic(existing: ExistingPost[], skip: Set<string>): Topic | null {
+function nextTopic(
+  existing: ExistingPost[],
+  skip: Set<string>,
+  scheduledOnly = false
+): Topic | null {
   const { topics } = JSON.parse(
     fs.readFileSync(path.join(ROOT, BLOG_TOPICS_FILE), "utf8")
   ) as {
     topics: Topic[];
   };
   const used = new Set(existing.map(p => p.topicId).filter(Boolean));
-  return topics.find(t => !used.has(t.id) && !skip.has(t.id)) ?? null;
+  return (
+    topics.find(
+      t =>
+        !used.has(t.id) &&
+        !skip.has(t.id) &&
+        (!scheduledOnly || Boolean(t.publishDate))
+    ) ?? null
+  );
 }
 
 function internalLinks(
@@ -437,6 +450,8 @@ async function main() {
       ? Math.min(12, Math.max(1, Number(args[countArg + 1]) || 1))
       : 1;
   const dryRun = args.includes("--dry-run");
+  // --scheduled: only write topics that have a publishDate (the monthly plan)
+  const scheduledOnly = args.includes("--scheduled");
   const date = todayInArizona();
 
   if (dryRun) {
@@ -462,15 +477,20 @@ async function main() {
 
   while (published.length < count && failures < count + 1) {
     const existing = readExistingPosts();
-    const topic = nextTopic(existing, skipped);
+    const topic = nextTopic(existing, skipped, scheduledOnly);
+    if (scheduledOnly && !topic) break;
     console.log(
       `Writing: ${topic ? topic.workingTitle : "(Claude-chosen topic)"}`
     );
     try {
-      const post = await writePost(topic, existing, date);
+      const publishDate =
+        topic?.publishDate && /^\d{4}-\d{2}-\d{2}$/.test(topic.publishDate)
+          ? topic.publishDate
+          : date;
+      const post = await writePost(topic, existing, publishDate);
       published.push(post);
       console.log(
-        `  saved ${path.relative(ROOT, post.file)} (${post.words} words)`
+        `  saved ${path.relative(ROOT, post.file)} (${post.words} words, publishes ${publishDate})`
       );
     } catch (err) {
       failures++;
