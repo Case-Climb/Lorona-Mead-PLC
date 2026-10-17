@@ -1,0 +1,79 @@
+name: Publish blog post
+
+# 12 posts a month: runs on 12 fixed days at 8:17 AM Arizona time (15:17 UTC;
+# Arizona does not observe daylight saving). Each run writes one post with
+# Claude, verifies the site still builds, and commits it. Vercel deploys the
+# push to main automatically.
+on:
+  schedule:
+    - cron: "17 15 1,3,6,8,11,13,16,18,21,23,26,28 * *"
+  workflow_dispatch:
+    inputs:
+      count:
+        description: "How many posts to write now (1-12)"
+        required: false
+        default: "1"
+      mode:
+        description: "direct = publish immediately; pull-request = open a PR for review first"
+        type: choice
+        options: [default, direct, pull-request]
+        default: default
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: publish-blog
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      # Repository variable BLOG_PUBLISH_MODE sets the default for scheduled runs.
+      MODE: ${{ (inputs.mode && inputs.mode != 'default') && inputs.mode || vars.BLOG_PUBLISH_MODE || 'direct' }}
+      COUNT: ${{ inputs.count || '1' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Write post(s) with Claude
+        id: generate
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          BLOG_MODEL: ${{ vars.BLOG_MODEL }}
+        run: pnpm blog:generate --count "$COUNT"
+
+      - name: Type-check and build
+        run: pnpm check && npx vite build
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TITLES: ${{ steps.generate.outputs.titles }}
+          BASE_BRANCH: ${{ github.ref_name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898732+github-actions[bot]@users.noreply.github.com"
+          git add client/src/content/blog
+          git commit -m "Blog: $TITLES"
+
+          if [ "$MODE" = "pull-request" ]; then
+            branch="blog/$(date -u +%Y%m%d-%H%M%S)"
+            git push origin "HEAD:$branch"
+            gh pr create --base "$BASE_BRANCH" --head "$branch" \
+              --title "New blog post: $TITLES" \
+              --body "Written automatically by the Publish blog post workflow. Review the article for accuracy, then merge to publish it."
+          else
+            git push origin "HEAD:$BASE_BRANCH"
+          fi

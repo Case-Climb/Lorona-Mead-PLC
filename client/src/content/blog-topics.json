@@ -1,0 +1,293 @@
+{
+  "_readme": "Queue of upcoming blog topics. The generator takes the first topic whose id has not been used by a post yet (posts record it as topicId). Reorder, edit, or add entries any time. category = practice area slug (dui, drug-charges, assault-domestic-violence, theft-white-collar, weapons-charges, expungements) or general. location = phoenix, scottsdale, mesa, tempe, or arizona. When the queue runs out, Claude picks a fresh topic automatically.",
+  "topics": [
+    {
+      "id": "dui-first-offense-what-to-expect",
+      "workingTitle": "What to Expect After a First-Offense DUI Arrest in Arizona",
+      "primaryKeyword": "first offense DUI Arizona",
+      "category": "dui",
+      "location": "phoenix",
+      "notes": "Walk through the timeline from arrest to resolution: MVD 15-day hearing deadline, arraignment, possible outcomes."
+    },
+    {
+      "id": "drug-possession-penalties-arizona",
+      "workingTitle": "Arizona Drug Possession Penalties: Dangerous vs. Narcotic Drugs",
+      "primaryKeyword": "drug possession penalties Arizona",
+      "category": "drug-charges",
+      "location": "arizona",
+      "notes": "Explain how Arizona classifies dangerous vs. narcotic drugs and why the distinction matters."
+    },
+    {
+      "id": "domestic-violence-charge-consequences",
+      "workingTitle": "What Happens After a Domestic Violence Arrest in Phoenix",
+      "primaryKeyword": "domestic violence charge Phoenix",
+      "category": "assault-domestic-violence",
+      "location": "phoenix",
+      "notes": "Release conditions, no-contact orders, and why the alleged victim cannot simply drop the charges."
+    },
+    {
+      "id": "shoplifting-charges-arizona",
+      "workingTitle": "Shoplifting Charges in Arizona: Misdemeanor or Felony?",
+      "primaryKeyword": "shoplifting charges Arizona",
+      "category": "theft-white-collar",
+      "location": "arizona",
+      "notes": "How value thresholds and prior history affect charge levels; civil demand letters."
+    },
+    {
+      "id": "prohibited-possessor-arizona",
+      "workingTitle": "Prohibited Possessor Charges in Arizona Explained",
+      "primaryKeyword": "prohibited possessor Arizona",
+      "category": "weapons-charges",
+      "location": "arizona",
+      "notes": "Who counts as a prohibited possessor and common defenses."
+    },
+    {
+      "id": "restore-gun-rights-arizona",
+      "workingTitle": "How to Restore Your Gun Rights in Arizona",
+      "primaryKeyword": "restore gun rights Arizona",
+      "category": "expungements",
+      "location": "arizona",
+      "notes": "Overview of firearm rights restoration after a conviction and how it relates to set-asides."
+    },
+    {
+      "id": "scottsdale-dui-checkpoints",
+      "workingTitle": "Scottsdale DUI Stops and Checkpoints: Know Your Rights",
+      "primaryKeyword": "Scottsdale DUI attorney",
+      "category": "dui",
+      "location": "scottsdale",
+      "notes": "Rights during traffic stops and checkpoints, field sobriety tests being voluntary, implied consent."
+    },
+    {
+      "id": "tempe-underage-drinking-asu",
+      "workingTitle": "Underage Drinking and DUI Charges for ASU Students in Tempe",
+      "primaryKeyword": "underage DUI Tempe",
+      "category": "dui",
+      "location": "tempe",
+      "notes": "Zero-tolerance rule for drivers under 21, possible school consequences, protecting a student's future."
+    },
+    {
+      "id": "mesa-assault-charges",
+      "workingTitle": "Assault Charges in Mesa: Simple vs. Aggravated Assault",
+      "primaryKeyword": "assault charges Mesa AZ",
+      "category": "assault-domestic-violence",
+      "location": "mesa",
+      "notes": "Differences between simple and aggravated assault and self-defense considerations."
+    },
+    {
+      "id": "arizona-marijuana-laws-what-is-still-illegal",
+      "workingTitle": "Arizona Marijuana Laws: What Is Still Illegal After Legalization",
+      "primaryKeyword": "Arizona marijuana laws",
+      "category": "drug-charges",
+      "location": "arizona",
+      "notes": "Possession limits, DUI-drug issues, sales without a license, and federal property."
+    },
+    {
+      "id": "extreme-dui-vs-super-extreme",
+      "workingTitle": "Extreme DUI vs. Super Extreme DUI in Arizona",
+      "primaryKeyword": "extreme DUI Arizona",
+      "category": "dui",
+      "location": "arizona",
+      "notes": "BAC thresholds, how penalties differ, and defenses focused on testing reliability."
+    },
+    {
+      "id": "criminal-record-employment-arizona",
+      "workingTitle": "How a Criminal Record Affects Employment in Arizona",
+      "primaryKeyword": "criminal record employment Arizona",
+      "category": "expungements",
+      "location": "arizona",
+      "notes": "Background checks, set-asides, record sealing options, and answering application questions honestly."
+    },
+    {
+      "id": "talking-to-police-should-you",
+      "workingTitle": "Should You Talk to the Police Without a Lawyer?",
+      "primaryKeyword": "talk to police without lawyer",
+      "category": "general",
+      "location": "arizona",
+      "notes": "Why voluntary statements hurt defendants; how to invoke the right to remain silent clearly."
+    },
+    {
+      "id": "aggravated-dui-felony-arizona",
+      "workingTitle": "Aggravated DUI in Arizona: When a DUI Becomes a Felony",
+      "primaryKeyword": "aggravated DUI Arizona",
+      "category": "dui",
+      "location": "arizona",
+      "notes": "Common triggers for felony DUI and why early legal help matters."
+    },
+    {
+      "id": "drug-paraphernalia-charges",
+      "workingTitle": "Drug Paraphernalia Charges in Arizona",
+      "primaryKeyword": "drug paraphernalia charge Arizona",
+      "category": "drug-charges",
+      "location": "arizona",
+      "notes": "What counts as paraphernalia, typical outcomes, and diversion options."
+    },
+    {
+      "id": "order-of-protection-arizona",
+      "workingTitle": "Served With an Order of Protection in Arizona? What to Do Next",
+      "primaryKeyword": "order of protection Arizona",
+      "category": "assault-domestic-violence",
+      "location": "arizona",
+      "notes": "How to respond, the right to request a hearing, and how violations can create new charges."
+    },
+    {
+      "id": "embezzlement-charges-arizona",
+      "workingTitle": "Embezzlement and Employee Theft Charges in Arizona",
+      "primaryKeyword": "embezzlement charges Arizona",
+      "category": "theft-white-collar",
+      "location": "arizona",
+      "notes": "How these cases are investigated and why not to talk to employers or investigators before getting counsel."
+    },
+    {
+      "id": "phoenix-criminal-court-process",
+      "workingTitle": "The Criminal Court Process in Maricopa County, Step by Step",
+      "primaryKeyword": "Maricopa County criminal court process",
+      "category": "general",
+      "location": "phoenix",
+      "notes": "Initial appearance, arraignment, pretrial conferences, plea offers, trial, and sentencing."
+    },
+    {
+      "id": "dui-blood-test-vs-breath-test",
+      "workingTitle": "Blood Tests vs. Breath Tests in Arizona DUI Cases",
+      "primaryKeyword": "DUI blood test Arizona",
+      "category": "dui",
+      "location": "arizona",
+      "notes": "How each test works, common sources of error, and why test procedures matter in a defense."
+    },
+    {
+      "id": "drug-diversion-programs-maricopa",
+      "workingTitle": "Drug Diversion Programs in Maricopa County",
+      "primaryKeyword": "drug diversion program Maricopa County",
+      "category": "drug-charges",
+      "location": "phoenix",
+      "notes": "How diversion works in general terms, eligibility factors, and the benefit of avoiding a conviction."
+    },
+    {
+      "id": "weapons-misconduct-arizona",
+      "workingTitle": "Misconduct Involving Weapons in Arizona",
+      "primaryKeyword": "misconduct involving weapons Arizona",
+      "category": "weapons-charges",
+      "location": "arizona",
+      "notes": "Common scenarios that lead to weapons charges despite Arizona's permissive gun laws."
+    },
+    {
+      "id": "set-aside-vs-sealing-records",
+      "workingTitle": "Set-Aside vs. Record Sealing in Arizona: What's the Difference?",
+      "primaryKeyword": "Arizona record sealing",
+      "category": "expungements",
+      "location": "arizona",
+      "notes": "Compare the two remedies and help readers understand which may fit their situation."
+    },
+    {
+      "id": "probation-violation-arizona",
+      "workingTitle": "Probation Violations in Arizona: What Happens Next",
+      "primaryKeyword": "probation violation Arizona",
+      "category": "general",
+      "location": "arizona",
+      "notes": "Technical vs. new-offense violations, the hearing process, and possible consequences."
+    },
+    {
+      "id": "scottsdale-drug-charges-old-town",
+      "workingTitle": "Drug Charges From a Night Out in Old Town Scottsdale",
+      "primaryKeyword": "drug charges Scottsdale",
+      "category": "drug-charges",
+      "location": "scottsdale",
+      "notes": "Common scenarios, search-and-seizure issues, and protecting your record."
+    },
+    {
+      "id": "disorderly-conduct-arizona",
+      "workingTitle": "Disorderly Conduct Charges in Arizona",
+      "primaryKeyword": "disorderly conduct Arizona",
+      "category": "assault-domestic-violence",
+      "location": "arizona",
+      "notes": "What the charge covers, domestic-violence designations, and potential defenses."
+    },
+    {
+      "id": "dui-license-suspension-mvd-hearing",
+      "workingTitle": "Arizona DUI License Suspension and the 15-Day MVD Hearing Deadline",
+      "primaryKeyword": "Arizona MVD hearing DUI",
+      "category": "dui",
+      "location": "arizona",
+      "notes": "Admin per se suspension, how to request a hearing, and what the hearing decides."
+    },
+    {
+      "id": "identity-theft-charges-arizona",
+      "workingTitle": "Identity Theft and Fraud Charges in Arizona",
+      "primaryKeyword": "identity theft charges Arizona",
+      "category": "theft-white-collar",
+      "location": "arizona",
+      "notes": "Types of fraud charges and why digital evidence needs careful review."
+    },
+    {
+      "id": "mesa-dui-arrest",
+      "workingTitle": "Arrested for DUI in Mesa? Your Next Steps",
+      "primaryKeyword": "Mesa DUI lawyer",
+      "category": "dui",
+      "location": "mesa",
+      "notes": "Local court process overview, deadlines, and how to protect your license."
+    },
+    {
+      "id": "federal-vs-state-drug-charges",
+      "workingTitle": "Federal vs. State Drug Charges: What Arizona Residents Should Know",
+      "primaryKeyword": "federal drug charges Arizona",
+      "category": "drug-charges",
+      "location": "arizona",
+      "notes": "What makes a case federal, key differences in process and sentencing exposure."
+    },
+    {
+      "id": "bail-and-release-conditions-arizona",
+      "workingTitle": "Bail and Release Conditions in Arizona Criminal Cases",
+      "primaryKeyword": "bail Arizona criminal case",
+      "category": "general",
+      "location": "phoenix",
+      "notes": "How release decisions are made at initial appearance and how to seek modified conditions."
+    },
+    {
+      "id": "tempe-shoplifting-students",
+      "workingTitle": "Shoplifting and Theft Charges for College Students in Tempe",
+      "primaryKeyword": "theft charges Tempe",
+      "category": "theft-white-collar",
+      "location": "tempe",
+      "notes": "Consequences for students, diversion possibilities, and protecting future opportunities."
+    },
+    {
+      "id": "self-defense-laws-arizona",
+      "workingTitle": "Self-Defense and Justification Laws in Arizona",
+      "primaryKeyword": "self defense law Arizona",
+      "category": "assault-domestic-violence",
+      "location": "arizona",
+      "notes": "Overview of justification defenses and the importance of evidence in self-defense claims."
+    },
+    {
+      "id": "dui-drugs-prescription-arizona",
+      "workingTitle": "DUI for Prescription Drugs in Arizona",
+      "primaryKeyword": "prescription drug DUI Arizona",
+      "category": "dui",
+      "location": "arizona",
+      "notes": "Impairment vs. metabolite issues and how lawful prescriptions factor into a defense."
+    },
+    {
+      "id": "what-to-ask-criminal-defense-attorney",
+      "workingTitle": "10 Questions to Ask a Criminal Defense Attorney Before Hiring",
+      "primaryKeyword": "hire criminal defense attorney Phoenix",
+      "category": "general",
+      "location": "phoenix",
+      "notes": "Practical hiring guide: experience, trial history, communication, fees, strategy."
+    },
+    {
+      "id": "felony-reduced-to-misdemeanor-arizona",
+      "workingTitle": "Can a Felony Be Reduced to a Misdemeanor in Arizona?",
+      "primaryKeyword": "felony reduced to misdemeanor Arizona",
+      "category": "expungements",
+      "location": "arizona",
+      "notes": "Class 6 designation, plea negotiations, and post-sentence options."
+    },
+    {
+      "id": "search-and-seizure-rights-arizona",
+      "workingTitle": "Your Search and Seizure Rights During an Arizona Traffic Stop",
+      "primaryKeyword": "illegal search Arizona",
+      "category": "general",
+      "location": "arizona",
+      "notes": "Consent, probable cause, and how unlawful searches can lead to suppressed evidence."
+    }
+  ]
+}

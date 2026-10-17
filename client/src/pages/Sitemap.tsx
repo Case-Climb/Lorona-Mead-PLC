@@ -1,5 +1,6 @@
 import { Link } from "wouter";
-import { SITE, PRACTICE_AREAS, LOCATIONS, BLOG_POSTS } from "@/lib/siteData";
+import { SITE, PRACTICE_AREAS, LOCATIONS } from "@/lib/siteData";
+import { BLOG_POSTS } from "@/lib/blog";
 import { FadeIn, Breadcrumbs } from "@/components/Shared";
 import SEO from "@/components/SEO";
 

@@ -16,7 +16,12 @@ async function startServer() {
       ? path.resolve(__dirname, "public")
       : path.resolve(__dirname, "..", "dist", "public");
 
-  app.use(express.static(staticPath));
+  // extensions: serve prerendered blog/<slug>.html for /blog/<slug>
+  app.use(express.static(staticPath, { extensions: ["html"], redirect: false }));
+  // /blog is both a directory and blog.html, so static won't pick the file itself
+  app.get("/blog", (_req, res) => {
+    res.sendFile(path.join(staticPath, "blog.html"));
+  });
 
   // Handle client-side routing - serve index.html for all routes
   app.get("*", (_req, res) => {

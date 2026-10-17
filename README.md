@@ -47,10 +47,19 @@ client/
     components/       ← Navbar, Footer, Layout, ContactForm, SEO, etc.
     pages/            ← Home, Attorney, PracticeAreas, Blog, Contact, etc.
     lib/
-      siteData.ts     ← Central data file (practice areas, locations, reviews, blog posts)
+      siteData.ts     ← Central data file (practice areas, locations, reviews)
+      blog.ts         ← Loads blog posts from content/blog
+    content/
+      blog/           ← One Markdown file per blog post
+      blog-topics.json← Queue of upcoming blog topics
     App.tsx           ← Routes
     main.tsx          ← Entry point
     index.css         ← Global styles and design tokens
+shared/blog.ts         ← Post format, Markdown rendering, schema markup
+scripts/
+  generate-blog-post.ts      ← Writes new posts with Claude
+  vite-plugin-blog-seo.ts    ← Build step: sitemap.xml, RSS, prerendered post pages
+.github/workflows/publish-blog.yml ← Publishes 12 posts a month
 vercel.json            ← Vercel deployment config
 ```
 
@@ -62,3 +71,35 @@ vercel.json            ← Vercel deployment config
 - LeadConnector chat widget site-wide
 - Dark theme with gold accent (#C9A84C)
 - Fully responsive
+- Automated blog: 12 new SEO articles a month, plus `sitemap.xml`, RSS, and prerendered post pages
+
+## Automated Blog
+
+A GitHub Actions workflow (`.github/workflows/publish-blog.yml`) publishes **12 posts a month**, on the 1st, 3rd, 6th, 8th, 11th, 13th, 16th, 18th, 21st, 23rd, 26th and 28th at 8:17 AM Arizona time. Each run:
+
+1. Takes the next unused topic from `client/src/content/blog-topics.json` (when the queue is empty, Claude picks a new topic that doesn't duplicate existing posts).
+2. Asks Claude (`claude-opus-5-5`) for a 1,200–1,700 word article with a title, meta description, FAQs and links to the firm's own practice-area, city, and blog pages.
+3. Checks the draft (length, headings, only valid internal links, no raw HTML, no duplicate slug/title) and asks for a rewrite once if it fails.
+4. Saves it as `client/src/content/blog/<slug>.md`, type-checks and builds the site, and commits. Vercel deploys the commit.
+
+### One-time setup
+
+1. **API key:** create a key at [platform.claude.com](https://platform.claude.com), then add it in GitHub → *Settings → Secrets and variables → Actions → New repository secret* as `ANTHROPIC_API_KEY`.
+2. **Branch permissions:** the workflow pushes to `main` with the built-in `GITHUB_TOKEN`. If `main` is protected, either allow GitHub Actions to push or use review mode (below).
+3. **Optional repository variables** (same settings page, *Variables* tab):
+   - `BLOG_PUBLISH_MODE` = `pull-request` to have each post opened as a pull request for an attorney to review and merge, instead of publishing directly. This also requires *Settings → Actions → General → Allow GitHub Actions to create and approve pull requests*.
+   - `BLOG_MODEL` to use a different Claude model.
+
+Cost is roughly $0.25–$0.50 per post (about $3–$6 a month) at current API pricing.
+
+### Day-to-day
+
+- **Run it now / backfill:** *Actions → Publish blog post → Run workflow*, and set how many posts (1–12) and the mode.
+- **Steer topics:** edit, reorder, or add entries in `client/src/content/blog-topics.json`. Each post records the `topicId` it was written from.
+- **Edit or remove a post:** edit or delete its Markdown file. Add `"updated": "YYYY-MM-DD"` to the frontmatter after a significant revision.
+- **Write a post by hand:** add a Markdown file with the same frontmatter fields. A post with a future `date` stays hidden until that day.
+- **Preview locally:** `pnpm blog:generate --dry-run` shows the next topic and the exact prompt without calling the API; `ANTHROPIC_API_KEY=... pnpm blog:generate` writes a post locally.
+
+### SEO output
+
+`pnpm build` also writes `sitemap.xml` (already referenced by `robots.txt`), `blog/rss.xml`, and a prerendered HTML file for the blog index and every post. Each has the right title, meta description, canonical URL, Open Graph tags, and `BlogPosting` / `BreadcrumbList` / `FAQPage` structured data, so search engines see the full article without running JavaScript. After the first deploy, submit `https://arizonatrialattorneys.com/sitemap.xml` in Google Search Console.

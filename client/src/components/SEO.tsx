@@ -6,9 +6,20 @@ type SEOProps = {
   description: string;
   canonical?: string;
   schema?: object;
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
 };
 
-export default function SEO({ title, description, canonical, schema }: SEOProps) {
+export default function SEO({
+  title,
+  description,
+  canonical,
+  schema,
+  type = "website",
+  publishedTime,
+  modifiedTime,
+}: SEOProps) {
   useEffect(() => {
     document.title = title;
 
@@ -25,8 +36,17 @@ export default function SEO({ title, description, canonical, schema }: SEOProps)
     setMeta("description", description);
     setMeta("og:title", title, "property");
     setMeta("og:description", description, "property");
-    setMeta("og:type", "website", "property");
+    setMeta("og:type", type, "property");
     setMeta("og:site_name", SITE.name, "property");
+    if (canonical) setMeta("og:url", canonical, "property");
+
+    for (const prop of ["article:published_time", "article:modified_time"]) {
+      document.querySelector(`meta[property="${prop}"]`)?.remove();
+    }
+    if (type === "article" && publishedTime) {
+      setMeta("article:published_time", publishedTime, "property");
+      setMeta("article:modified_time", modifiedTime ?? publishedTime, "property");
+    }
 
     if (canonical) {
       let link = document.querySelector('link[rel="canonical"]');
@@ -54,7 +74,7 @@ export default function SEO({ title, description, canonical, schema }: SEOProps)
       const s = document.getElementById("page-schema");
       if (s) s.remove();
     };
-  }, [title, description, canonical, schema]);
+  }, [title, description, canonical, schema, type, publishedTime, modifiedTime]);
 
   return null;
 }

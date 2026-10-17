@@ -1,6 +1,6 @@
-import { Link } from "wouter";
-import { Clock, ArrowRight, BookOpen } from "lucide-react";
-import { BLOG_POSTS } from "@/lib/siteData";
+import { Link, useSearch } from "wouter";
+import { Clock, ArrowRight, ArrowLeft } from "lucide-react";
+import { BLOG_POSTS, BLOG_PAGE_SIZE, categoryLabel } from "@/lib/blog";
 import {
   FadeIn,
   SectionLabel,
@@ -11,12 +11,19 @@ import {
 import SEO from "@/components/SEO";
 
 export default function Blog() {
+  const search = useSearch();
+  const totalPages = Math.max(1, Math.ceil(BLOG_POSTS.length / BLOG_PAGE_SIZE));
+  const requested = Number(new URLSearchParams(search).get("page")) || 1;
+  const page = Math.min(Math.max(1, Math.floor(requested)), totalPages);
+  const posts = BLOG_POSTS.slice((page - 1) * BLOG_PAGE_SIZE, page * BLOG_PAGE_SIZE);
+  const pageHref = (n: number) => (n === 1 ? "/blog" : `/blog?page=${n}`);
+
   return (
     <>
     <SEO
-      title="Criminal Defense Blog | Lorona Mead, PLC | Phoenix, AZ"
+      title={`Criminal Defense Blog${page > 1 ? ` (Page ${page})` : ""} | Lorona Mead, PLC | Phoenix, AZ`}
       description="Legal insights and articles on Arizona criminal defense law from Jess A. Lorona. DUI, drug charges, expungements, and more. Free consultation."
-      canonical="https://arizonatrialattorneys.com/blog"
+      canonical={`https://arizonatrialattorneys.com${pageHref(page)}`}
     />
       <section className="relative pt-40 pb-20 overflow-hidden">
         <div className="absolute inset-0">
@@ -41,14 +48,14 @@ export default function Blog() {
       <section className="py-16 bg-[#0a0a0a]">
         <div className="container">
           <FadeIn className="mb-12">
-            <SectionLabel>Recent Posts</SectionLabel>
+            <SectionLabel>{page === 1 ? "Recent Posts" : `Page ${page} of ${totalPages}`}</SectionLabel>
             <GoldUnderlineHeading>
               Latest Articles
             </GoldUnderlineHeading>
           </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {BLOG_POSTS.map((post, i) => (
+            {posts.map((post, i) => (
               <FadeIn key={post.slug} delay={i * 60}>
                 <Link
                   href={`/blog/${post.slug}`}
@@ -56,7 +63,8 @@ export default function Blog() {
                 >
                   <div className="p-6">
                     <div className="flex items-center gap-3 text-xs text-white/40 mb-4">
-                      <span>{post.date}</span>
+                      <span className="text-[#C9A84C]/80">{categoryLabel(post.category)}</span>
+                      <span>{post.displayDate}</span>
                       <span className="flex items-center gap-1">
                         <Clock className="w-3 h-3" /> {post.readTime}
                       </span>
@@ -75,6 +83,24 @@ export default function Blog() {
               </FadeIn>
             ))}
           </div>
+
+          {totalPages > 1 && (
+            <nav className="flex items-center justify-between mt-12" aria-label="Blog pagination">
+              {page > 1 ? (
+                <Link href={pageHref(page - 1)} className="inline-flex items-center gap-1 text-sm font-medium text-[#C9A84C] hover:gap-2 transition-all">
+                  <ArrowLeft className="w-4 h-4" /> Newer Articles
+                </Link>
+              ) : <span />}
+              <span className="text-xs text-white/40">
+                Page {page} of {totalPages}
+              </span>
+              {page < totalPages ? (
+                <Link href={pageHref(page + 1)} className="inline-flex items-center gap-1 text-sm font-medium text-[#C9A84C] hover:gap-2 transition-all">
+                  Older Articles <ArrowRight className="w-4 h-4" />
+                </Link>
+              ) : <span />}
+            </nav>
+          )}
         </div>
       </section>
 

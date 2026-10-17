@@ -1,8 +1,17 @@
 import { type ReactNode, useEffect } from "react";
+import { useLocation, useSearch } from "wouter";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 export default function Layout({ children }: { children: ReactNode }) {
+  const [location] = useLocation();
+  const search = useSearch();
+
+  // Start each new page (including blog pagination) at the top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location, search]);
+
   useEffect(() => {
     // Load LeadConnector chat widget
     const script = document.createElement("script");

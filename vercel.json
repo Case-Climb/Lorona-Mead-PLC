@@ -2,6 +2,7 @@
   "buildCommand": "npx vite build",
   "outputDirectory": "dist/public",
   "framework": "vite",
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
