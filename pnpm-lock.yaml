@@ -125,7 +125,7 @@ importers:
         specifier: ^0.453.0
         version: 0.453.0(react@19.2.1)
       marked:
-        specifier: ^16
+        specifier: ^16.4.1
         version: 16.4.1
       nanoid:
         specifier: ^5.1.5
