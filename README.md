@@ -61,8 +61,8 @@ scripts/
   generate-blog-post.ts      ← Writes new posts with Claude
   vite-plugin-blog-seo.ts    ← Build step: sitemap.xml, RSS, prerendered post pages
 .github/workflows/publish-blog.yml ← Manual "publish now" button
-.github/workflows/daily-rebuild.yml ← Daily Vercel rebuild for scheduled posts
-docs/blog-automation.md            ← Grok prompt + Claude Code monthly runbook
+.github/workflows/daily-rebuild.yml ← Optional daily Vercel rebuild (backup for Grok)
+docs/blog-automation.md            ← Grok prompts + Claude Code monthly runbook
 vercel.json            ← Vercel deployment config
 ```
 
@@ -78,7 +78,7 @@ vercel.json            ← Vercel deployment config
 
 ## Automated Blog
 
-**How posts get scheduled:** once a month, a Grok scheduled task plans the next month's 12 posts (topics plus publish dates on the 1st, 3rd, 6th, 8th, 11th, 13th, 16th, 18th, 21st, 23rd, 26th and 28th) and sends the plan to Claude Code. Claude Code writes all 12 posts in one session, reviews them, and pushes them with future dates. Each post stays hidden until its date, and a daily rebuild adds it to the sitemap and RSS that morning. The Grok prompt and Claude Code's step-by-step instructions are in [`docs/blog-automation.md`](docs/blog-automation.md).
+**How posts get scheduled:** once a month, a Grok scheduled task plans the next month's 12 posts (topics plus publish dates on the 1st, 3rd, 6th, 8th, 11th, 13th, 16th, 18th, 21st, 23rd, 26th and 28th) and sends the plan to Claude Code. Claude Code writes all 12 posts in one session, reviews them, and pushes them with future dates. Each post stays hidden until its date; on each publish date a second Grok task redeploys the site on Vercel so the post is added to the sitemap and RSS. The Grok prompts and Claude Code's step-by-step instructions are in [`docs/blog-automation.md`](docs/blog-automation.md).
 
 For each post, the generator (`pnpm blog:generate`):
 
@@ -89,7 +89,7 @@ For each post, the generator (`pnpm blog:generate`):
 
 ### One-time setup
 
-1. **Daily rebuild:** add the `VERCEL_DEPLOY_HOOK` secret (Vercel → Project Settings → Git → Deploy Hooks → create a hook for `main`) so `.github/workflows/daily-rebuild.yml` can refresh the sitemap and search-engine pages each morning.
+1. **Grok tasks:** set up the two Grok scheduled tasks in [`docs/blog-automation.md`](docs/blog-automation.md) (monthly plan, publish-day Vercel redeploy). Optional backup for the redeploy: a `VERCEL_DEPLOY_HOOK` secret, used by `.github/workflows/daily-rebuild.yml`.
 1. **Claude Pro token (only for the manual GitHub workflow):** on any computer with Claude Code installed (`npm install -g @anthropic-ai/claude-code`), run `claude setup-token` and sign in with the Claude Pro account. Copy the token it prints, then add it in GitHub → *Settings → Secrets and variables → Actions → New repository secret* as `CLAUDE_CODE_OAUTH_TOKEN`. The token lasts about a year; repeat this step when it expires (the workflow run will fail and GitHub emails you).
 2. **Branch permissions:** the workflow pushes to `main` with the built-in `GITHUB_TOKEN`. If `main` is protected, either allow GitHub Actions to push or use review mode (below).
 3. **Optional repository variables** (same settings page, *Variables* tab):

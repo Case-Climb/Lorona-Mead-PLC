@@ -3,14 +3,14 @@
 Once a month, a Grok scheduled task plans the next month's 12 blog posts and
 sends the plan to Claude Code. Claude Code does all the work: it writes the 12
 posts in one session, dates them across the month, and pushes them. Each post
-stays hidden on the site until its publish date, and a daily rebuild
-(`.github/workflows/daily-rebuild.yml`) adds it to the sitemap and RSS that
-morning.
+stays hidden on the site until its publish date. On each publish date a second
+Grok task redeploys the site on Vercel, which adds that day's post to the
+sitemap, RSS feed and prerendered search-engine pages.
 
-Grok only plans and sends. Edit this file to change how Claude Code does the
-work; the Grok prompt doesn't need to change.
+Grok plans, sends and redeploys; it never writes or edits posts. Edit this file
+to change how Claude Code does the work; the Grok prompts don't need to change.
 
-## The Grok scheduled task
+## Grok task 1: monthly plan
 
 - **Schedule:** monthly, on the 20th at 9:00 AM Arizona time (America/Phoenix).
   That leaves time to review the posts before the month starts.
@@ -48,7 +48,34 @@ YYYY-MM-DD | ... | ... | ... | ... | ...
 
 4. Do not write any blog posts yourself. When Claude Code replies, show me its
    final reply.
+
+5. Then check Vercel: the newest production deployment of the project for
+   arizonatrialattorneys.com (branch main) must have finished with status
+   Ready. If it failed, show me the error from its build log.
 ```
+
+## Grok task 2: publish-day redeploy
+
+- **Schedule:** daily at 6:00 AM Arizona time (America/Phoenix).
+- **Task prompt for Grok:**
+
+```text
+Check today's date in Arizona time (America/Phoenix). If the day of the month
+is NOT one of 1, 3, 6, 8, 11, 13, 16, 18, 21, 23, 26, 28, do nothing and reply
+"No post today".
+
+Otherwise, in Vercel, redeploy the current production deployment of the
+project for arizonatrialattorneys.com (branch main, production environment).
+Do not change any settings, environment variables or domains, and do not
+deploy any other branch.
+
+Wait until the deployment is Ready. Then open
+https://arizonatrialattorneys.com/sitemap.xml and find the URL under /blog/
+whose <lastmod> is today's date. Open that URL and check the page loads
+with an article title. Reply with the post title and URL. If the deployment
+fails, or no post is dated today, tell me what you found.
+```
+
 
 ## Monthly run (for Claude Code)
 
@@ -115,10 +142,13 @@ what failed and the error output.
 
 ## Maintenance
 
-- **Daily rebuild:** add the `VERCEL_DEPLOY_HOOK` repository secret (Vercel →
-  Project Settings → Git → Deploy Hooks → create a hook for `main`, copy the
-  URL). Without it, posts still appear on their dates, but the sitemap, RSS
-  and search-engine pages only catch up at the next push.
+- **Rebuild backup:** Grok task 2 does the publish-day rebuild. If you'd rather
+  not rely on Grok for it, add the `VERCEL_DEPLOY_HOOK` repository secret
+  (Vercel → Project Settings → Git → Deploy Hooks → create a hook for `main`)
+  and `.github/workflows/daily-rebuild.yml` rebuilds every morning; without the
+  secret that workflow does nothing. Even with no rebuild at all, posts still
+  appear on their dates; only the sitemap, RSS and search-engine pages lag
+  until the next deploy.
 - **Manual backup:** GitHub → Actions → "Publish blog post" → Run workflow
   publishes the next queued topic immediately (needs the
   `CLAUDE_CODE_OAUTH_TOKEN` secret).
