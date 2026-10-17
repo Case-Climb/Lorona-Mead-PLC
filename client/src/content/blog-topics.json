@@ -2,6 +2,130 @@
   "_readme": "Queue of upcoming blog topics. The generator takes the first topic whose id has not been used by a post yet (posts record it as topicId). Reorder, edit, or add entries any time. category = practice area slug (dui, drug-charges, assault-domestic-violence, theft-white-collar, weapons-charges, expungements) or general. location = phoenix, scottsdale, mesa, tempe, or arizona. When the queue runs out, Claude picks a fresh topic automatically. image/imageAlt: featured image for the post (pre-generated with Higgsfield into client/public/blog-images). Topics without one use the practice area's photo.",
   "topics": [
     {
+      "id": "mesa-dui-arrest",
+      "workingTitle": "What to Do After a Halloween Weekend DUI Arrest in Scottsdale",
+      "primaryKeyword": "scottsdale dui lawyer",
+      "category": "dui",
+      "location": "scottsdale",
+      "notes": "Halloween weekend enforcement; 15-day deadline to request an MVD hearing; calm next-steps checklist",
+      "image": "/blog-images/mesa-dui-arrest.jpg",
+      "imageAlt": "Suburban desert road at night with distant police lights",
+      "publishDate": "2026-11-01"
+    },
+    {
+      "id": "domestic-violence-charge-consequences",
+      "workingTitle": "Your First Court Appearance on an Arizona Domestic Violence Charge",
+      "primaryKeyword": "domestic violence charge arizona",
+      "category": "assault-domestic-violence",
+      "location": "arizona",
+      "notes": "initial appearance, release conditions and no-contact orders; how the DV designation under A.R.S. 13-3601 works",
+      "image": "/blog-images/domestic-violence-charge-consequences.jpg",
+      "imageAlt": "Quiet Phoenix home at dusk with the porch light on",
+      "publishDate": "2026-11-03"
+    },
+    {
+      "id": "set-aside-vs-sealing-records",
+      "workingTitle": "Sealing Your Criminal Record in Arizona: Who Qualifies and How It Works",
+      "primaryKeyword": "arizona record sealing",
+      "category": "expungements",
+      "location": "arizona",
+      "notes": "A.R.S. 13-911 sealing vs. set-aside; waiting periods; verify current statute text before citing",
+      "image": "/blog-images/set-aside-vs-sealing-records.jpg",
+      "imageAlt": "Archive boxes and a folder sealed with wax",
+      "publishDate": "2026-11-06"
+    },
+    {
+      "id": "fentanyl-possession-phoenix",
+      "workingTitle": "Fentanyl Possession Charges in Phoenix: Penalties and Possible Defenses",
+      "primaryKeyword": "fentanyl possession charge phoenix",
+      "category": "drug-charges",
+      "location": "phoenix",
+      "notes": "current local enforcement focus; threshold amounts; search-and-seizure issues; diversion options; no scare tactics",
+      "publishDate": "2026-11-08"
+    },
+    {
+      "id": "veterans-court-maricopa",
+      "workingTitle": "How Veterans Treatment Court Works in Maricopa County",
+      "primaryKeyword": "veterans court maricopa county",
+      "category": "general",
+      "location": "phoenix",
+      "notes": "Veterans Day tie-in; eligibility, how cases are referred, what the program involves",
+      "publishDate": "2026-11-11"
+    },
+    {
+      "id": "prohibited-possessor-arizona",
+      "workingTitle": "Prohibited Possessor Charges in Arizona: What They Mean and How to Respond",
+      "primaryKeyword": "prohibited possessor arizona",
+      "category": "weapons-charges",
+      "location": "arizona",
+      "notes": "A.R.S. 13-3101 and 13-3102; who counts as a prohibited possessor; restoring gun rights",
+      "image": "/blog-images/prohibited-possessor-arizona.jpg",
+      "imageAlt": "Locked gun safe in a dim room",
+      "publishDate": "2026-11-13"
+    },
+    {
+      "id": "extreme-dui-vs-super-extreme",
+      "workingTitle": "Extreme DUI in Mesa: What a BAC of 0.15 or Higher Means for Your Case",
+      "primaryKeyword": "extreme dui mesa",
+      "category": "dui",
+      "location": "mesa",
+      "notes": "extreme vs. super extreme DUI; jail, ignition interlock and license consequences; defenses to BAC results",
+      "image": "/blog-images/extreme-dui-vs-super-extreme.jpg",
+      "imageAlt": "Breath testing device with police lights blurred behind",
+      "publishDate": "2026-11-16"
+    },
+    {
+      "id": "shoplifting-charges-arizona",
+      "workingTitle": "Shoplifting Charges in Tempe: What to Know Before the Holiday Shopping Rush",
+      "primaryKeyword": "shoplifting charge tempe",
+      "category": "theft-white-collar",
+      "location": "tempe",
+      "notes": "A.R.S. 13-1805; misdemeanor vs. felony thresholds; civil demand letters; first-offender diversion",
+      "image": "/blog-images/shoplifting-charges-arizona.jpg",
+      "imageAlt": "Empty store aisle at night with a security camera",
+      "publishDate": "2026-11-18"
+    },
+    {
+      "id": "mesa-assault-charges",
+      "workingTitle": "Assault Charges After a Game Day Incident in Tempe",
+      "primaryKeyword": "assault charge tempe",
+      "category": "assault-domestic-violence",
+      "location": "tempe",
+      "notes": "college football season crowds; simple vs. aggravated assault (A.R.S. 13-1203 and 13-1204); self-defense",
+      "image": "/blog-images/mesa-assault-charges.jpg",
+      "imageAlt": "Empty courtroom gallery in morning light",
+      "publishDate": "2026-11-21"
+    },
+    {
+      "id": "scottsdale-dui-checkpoints",
+      "workingTitle": "Thanksgiving DUI Enforcement in Phoenix: What Drivers Should Know",
+      "primaryKeyword": "phoenix dui checkpoint",
+      "category": "dui",
+      "location": "phoenix",
+      "notes": "holiday DUI task force season starts Thanksgiving week; implied consent; rights during a traffic stop",
+      "image": "/blog-images/scottsdale-dui-checkpoints.jpg",
+      "imageAlt": "Traffic cones and road flares on a palm-lined boulevard at night",
+      "publishDate": "2026-11-23"
+    },
+    {
+      "id": "marijuana-expungement-prop-207",
+      "workingTitle": "Marijuana Expungement in Arizona Under Prop 207: How to File",
+      "primaryKeyword": "marijuana expungement arizona",
+      "category": "expungements",
+      "location": "mesa",
+      "notes": "A.R.S. 36-2862 petition process; which past offenses qualify; filing in Maricopa County courts",
+      "publishDate": "2026-11-26"
+    },
+    {
+      "id": "organized-retail-theft-arizona",
+      "workingTitle": "Organized Retail Theft Charges After Black Friday in Scottsdale",
+      "primaryKeyword": "organized retail theft arizona",
+      "category": "theft-white-collar",
+      "location": "scottsdale",
+      "notes": "A.R.S. 13-1819; how it differs from shoplifting; felony consequences; helpful, not sensational",
+      "publishDate": "2026-11-28"
+    },
+    {
       "id": "dui-first-offense-what-to-expect",
       "workingTitle": "What to Expect After a First-Offense DUI Arrest in Arizona",
       "primaryKeyword": "first offense DUI Arizona",
@@ -22,36 +146,6 @@
       "imageAlt": "Sealed evidence bags and a legal pad on an attorney's desk"
     },
     {
-      "id": "domestic-violence-charge-consequences",
-      "workingTitle": "What Happens After a Domestic Violence Arrest in Phoenix",
-      "primaryKeyword": "domestic violence charge Phoenix",
-      "category": "assault-domestic-violence",
-      "location": "phoenix",
-      "notes": "Release conditions, no-contact orders, and why the alleged victim cannot simply drop the charges.",
-      "image": "/blog-images/domestic-violence-charge-consequences.jpg",
-      "imageAlt": "Quiet Phoenix home at dusk with the porch light on"
-    },
-    {
-      "id": "shoplifting-charges-arizona",
-      "workingTitle": "Shoplifting Charges in Arizona: Misdemeanor or Felony?",
-      "primaryKeyword": "shoplifting charges Arizona",
-      "category": "theft-white-collar",
-      "location": "arizona",
-      "notes": "How value thresholds and prior history affect charge levels; civil demand letters.",
-      "image": "/blog-images/shoplifting-charges-arizona.jpg",
-      "imageAlt": "Empty store aisle at night with a security camera"
-    },
-    {
-      "id": "prohibited-possessor-arizona",
-      "workingTitle": "Prohibited Possessor Charges in Arizona Explained",
-      "primaryKeyword": "prohibited possessor Arizona",
-      "category": "weapons-charges",
-      "location": "arizona",
-      "notes": "Who counts as a prohibited possessor and common defenses.",
-      "image": "/blog-images/prohibited-possessor-arizona.jpg",
-      "imageAlt": "Locked gun safe in a dim room"
-    },
-    {
       "id": "restore-gun-rights-arizona",
       "workingTitle": "How to Restore Your Gun Rights in Arizona",
       "primaryKeyword": "restore gun rights Arizona",
@@ -60,16 +154,6 @@
       "notes": "Overview of firearm rights restoration after a conviction and how it relates to set-asides.",
       "image": "/blog-images/restore-gun-rights-arizona.jpg",
       "imageAlt": "Legal petition and fountain pen with a flag in the background"
-    },
-    {
-      "id": "scottsdale-dui-checkpoints",
-      "workingTitle": "Scottsdale DUI Stops and Checkpoints: Know Your Rights",
-      "primaryKeyword": "Scottsdale DUI attorney",
-      "category": "dui",
-      "location": "scottsdale",
-      "notes": "Rights during traffic stops and checkpoints, field sobriety tests being voluntary, implied consent.",
-      "image": "/blog-images/scottsdale-dui-checkpoints.jpg",
-      "imageAlt": "Traffic cones and road flares on a palm-lined boulevard at night"
     },
     {
       "id": "tempe-underage-drinking-asu",
@@ -82,16 +166,6 @@
       "imageAlt": "College town lake and pedestrian bridge at night"
     },
     {
-      "id": "mesa-assault-charges",
-      "workingTitle": "Assault Charges in Mesa: Simple vs. Aggravated Assault",
-      "primaryKeyword": "assault charges Mesa AZ",
-      "category": "assault-domestic-violence",
-      "location": "mesa",
-      "notes": "Differences between simple and aggravated assault and self-defense considerations.",
-      "image": "/blog-images/mesa-assault-charges.jpg",
-      "imageAlt": "Empty courtroom gallery in morning light"
-    },
-    {
       "id": "arizona-marijuana-laws-what-is-still-illegal",
       "workingTitle": "Arizona Marijuana Laws: What Is Still Illegal After Legalization",
       "primaryKeyword": "Arizona marijuana laws",
@@ -100,16 +174,6 @@
       "notes": "Possession limits, DUI-drug issues, sales without a license, and federal property.",
       "image": "/blog-images/arizona-marijuana-laws-what-is-still-illegal.jpg",
       "imageAlt": "Cannabis leaf shadow across an open law book and gavel"
-    },
-    {
-      "id": "extreme-dui-vs-super-extreme",
-      "workingTitle": "Extreme DUI vs. Super Extreme DUI in Arizona",
-      "primaryKeyword": "extreme DUI Arizona",
-      "category": "dui",
-      "location": "arizona",
-      "notes": "BAC thresholds, how penalties differ, and defenses focused on testing reliability.",
-      "image": "/blog-images/extreme-dui-vs-super-extreme.jpg",
-      "imageAlt": "Breath testing device with police lights blurred behind"
     },
     {
       "id": "criminal-record-employment-arizona",
@@ -212,16 +276,6 @@
       "imageAlt": "Empty leather holster beside an open law book"
     },
     {
-      "id": "set-aside-vs-sealing-records",
-      "workingTitle": "Set-Aside vs. Record Sealing in Arizona: What's the Difference?",
-      "primaryKeyword": "Arizona record sealing",
-      "category": "expungements",
-      "location": "arizona",
-      "notes": "Compare the two remedies and help readers understand which may fit their situation.",
-      "image": "/blog-images/set-aside-vs-sealing-records.jpg",
-      "imageAlt": "Archive boxes and a folder sealed with wax"
-    },
-    {
       "id": "probation-violation-arizona",
       "workingTitle": "Probation Violations in Arizona: What Happens Next",
       "primaryKeyword": "probation violation Arizona",
@@ -270,16 +324,6 @@
       "notes": "Types of fraud charges and why digital evidence needs careful review.",
       "image": "/blog-images/identity-theft-charges-arizona.jpg",
       "imageAlt": "Credit card on a laptop keyboard lit by the screen"
-    },
-    {
-      "id": "mesa-dui-arrest",
-      "workingTitle": "Arrested for DUI in Mesa? Your Next Steps",
-      "primaryKeyword": "Mesa DUI lawyer",
-      "category": "dui",
-      "location": "mesa",
-      "notes": "Local court process overview, deadlines, and how to protect your license.",
-      "image": "/blog-images/mesa-dui-arrest.jpg",
-      "imageAlt": "Suburban desert road at night with distant police lights"
     },
     {
       "id": "federal-vs-state-drug-charges",
