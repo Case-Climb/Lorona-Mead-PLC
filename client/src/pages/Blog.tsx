@@ -23,7 +23,7 @@ export default function Blog() {
     <SEO
       title={`Criminal Defense Blog${page > 1 ? ` (Page ${page})` : ""} | Lorona Mead, PLC | Phoenix, AZ`}
       description="Legal insights and articles on Arizona criminal defense law from Jess A. Lorona. DUI, drug charges, expungements, and more. Free consultation."
-      canonical={`https://arizonatrialattorneys.com${pageHref(page)}`}
+      canonical={`https://www.loronameadpllc.com${pageHref(page)}`}
     />
       <section className="relative pt-40 pb-20 overflow-hidden">
         <div className="absolute inset-0">

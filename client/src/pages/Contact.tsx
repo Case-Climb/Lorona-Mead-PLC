@@ -15,7 +15,7 @@ export default function Contact() {
     <SEO
       title="Contact Us | Free Consultation | Lorona Mead, PLC | Phoenix, AZ"
       description="Contact Lorona Mead, PLC for a free criminal defense consultation in Phoenix, AZ. Call (602) 385-6818 or fill out our confidential form. Available 24/7."
-      canonical="https://arizonatrialattorneys.com/contact"
+      canonical="https://www.loronameadpllc.com/contact"
     />
       <section className="relative pt-40 pb-20 overflow-hidden">
         <div className="absolute inset-0">

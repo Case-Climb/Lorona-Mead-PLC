@@ -16,7 +16,7 @@ export default function Testimonials() {
     <SEO
       title="Client Reviews | Lorona Mead, PLC | Phoenix Criminal Defense"
       description="Read what clients say about Jess A. Lorona and Lorona Mead, PLC. 5.0 star rated Phoenix criminal defense attorney. Free consultation. Call (602) 385-6818."
-      canonical="https://arizonatrialattorneys.com/testimonials"
+      canonical="https://www.loronameadpllc.com/testimonials"
     />
       <section className="relative pt-40 pb-20 overflow-hidden">
         <div className="absolute inset-0">

@@ -1,4 +1,5 @@
 import express from "express";
+import fs from "fs";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -16,16 +17,16 @@ async function startServer() {
       ? path.resolve(__dirname, "public")
       : path.resolve(__dirname, "..", "dist", "public");
 
-  // extensions: serve prerendered blog/<slug>.html for /blog/<slug>
+  // Prerendered pages: /attorney -> attorney.html, /blog/<slug> -> blog/<slug>.html
   app.use(express.static(staticPath, { extensions: ["html"], redirect: false }));
-  // /blog is both a directory and blog.html, so static won't pick the file itself
-  app.get("/blog", (_req, res) => {
-    res.sendFile(path.join(staticPath, "blog.html"));
-  });
-
-  // Handle client-side routing - serve index.html for all routes
-  app.get("*", (_req, res) => {
-    res.sendFile(path.join(staticPath, "index.html"));
+  // Paths that are also directories (/blog, /criminal-defense) skip the
+  // extension lookup above, so resolve <path>.html explicitly; else a real 404.
+  app.get("*", (req, res) => {
+    const page = path.join(staticPath, `${req.path.replace(/\/+$/, "")}.html`);
+    if (page.startsWith(staticPath + path.sep) && fs.existsSync(page)) {
+      return res.sendFile(page);
+    }
+    res.status(404).sendFile(path.join(staticPath, "404.html"));
   });
 
   const port = process.env.PORT || 3000;

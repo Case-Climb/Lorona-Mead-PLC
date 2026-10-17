@@ -8,6 +8,7 @@ import {
   CTASection,
 } from "@/components/Shared";
 import SEO from "@/components/SEO";
+import { FIRM_ID, breadcrumbSchema, firmSchema } from "@/lib/schema";
 
 export default function Attorney() {
   return (
@@ -15,20 +16,22 @@ export default function Attorney() {
     <SEO
       title="Jess A. Lorona | Phoenix Criminal Defense Attorney | Lorona Mead, PLC"
       description="Meet Jess A. Lorona, Phoenix criminal defense attorney with 43+ years of experience and former prosecutor insight. Free consultation. Call (602) 385-6818."
-      canonical="https://arizonatrialattorneys.com/attorney"
+      canonical="https://www.loronameadpllc.com/attorney"
       schema={{
         "@context": "https://schema.org",
-        "@type": "Attorney",
-        "name": "Jess A. Lorona",
-        "worksFor": { "@type": "LegalService", "name": SITE.name },
-        "telephone": SITE.phone,
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "2 N. Central Ave., Suite 1800",
-          "addressLocality": "Phoenix",
-          "addressRegion": "AZ",
-          "postalCode": "85004"
-        }
+        "@graph": [
+          {
+            "@type": "Attorney",
+            name: SITE.attorney,
+            url: "https://www.loronameadpllc.com/attorney",
+            image: "https://www.loronameadpllc.com/manus-storage/jess-lorona-headshot_6f6cddca.jpg",
+            telephone: SITE.phone,
+            address: firmSchema().address,
+            worksFor: { "@id": FIRM_ID },
+          },
+          firmSchema(),
+          breadcrumbSchema([{ name: SITE.attorney, path: "/attorney" }]),
+        ],
       }}
     />
       <section className="relative pt-40 pb-20 overflow-hidden">
@@ -58,7 +61,7 @@ export default function Attorney() {
             <FadeIn>
               <div className="lg:sticky lg:top-28">
                 <img
-                  src="/manus-storage/jess-lorona-headshot_6f6cddca.png"
+                  src="/manus-storage/jess-lorona-headshot_6f6cddca.jpg"
                   alt="Jess A. Lorona, Phoenix criminal defense attorney"
                   className="w-full rounded-lg"
                 />

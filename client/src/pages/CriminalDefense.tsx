@@ -16,7 +16,7 @@ export default function CriminalDefense() {
     <SEO
       title="Criminal Defense Attorney in Phoenix | Lorona Mead, PLC"
       description="Comprehensive criminal defense in Phoenix, AZ. Every type of criminal case, from DUI to federal charges. Former prosecutor, 43+ years experience. Free consultation."
-      canonical="https://arizonatrialattorneys.com/criminal-defense"
+      canonical="https://www.loronameadpllc.com/criminal-defense"
     />
       <section className="relative pt-40 pb-20 overflow-hidden">
         <div className="absolute inset-0">

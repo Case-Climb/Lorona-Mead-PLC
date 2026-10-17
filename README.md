@@ -30,11 +30,11 @@ Output is written to `dist/public/`.
 
 1. Import this repository into [Vercel](https://vercel.com/new)
 2. Framework preset: **Vite**
-3. Build command: `npx vite build`
+3. Build command: `pnpm build:static` (set in `vercel.json`)
 4. Output directory: `dist/public`
 5. Deploy — no environment variables required for the static build
 
-The `vercel.json` file in the root handles SPA routing rewrites automatically.
+`vercel.json` serves the prerendered pages with clean URLs (`/attorney` → `attorney.html`), returns a real 404 for unknown URLs, and sets long-lived caching for images and scripts.
 
 ## Project Structure
 
@@ -59,7 +59,7 @@ client/
 shared/blog.ts         ← Post format, Markdown rendering, schema markup
 scripts/
   generate-blog-post.ts      ← Writes new posts with Claude
-  vite-plugin-blog-seo.ts    ← Build step: sitemap.xml, RSS, prerendered post pages
+  prerender.ts               ← Build step: prerendered HTML for every page, 404.html, sitemap.xml, RSS
 .github/workflows/publish-blog.yml ← Manual "publish now" button
 .github/workflows/daily-rebuild.yml ← Optional daily Vercel rebuild (backup for Grok)
 docs/blog-automation.md            ← Grok prompts + Claude Code monthly runbook
@@ -112,4 +112,6 @@ Every queued topic has a featured image in `client/public/blog-images/<topic-id>
 
 ### SEO output
 
-`pnpm build` also writes `sitemap.xml` (already referenced by `robots.txt`), `blog/rss.xml`, and a prerendered HTML file for the blog index and every post. Each has the right title, meta description, canonical URL, Open Graph tags, and `BlogPosting` / `BreadcrumbList` / `FAQPage` structured data, so search engines see the full article without running JavaScript. After the first deploy, submit `https://arizonatrialattorneys.com/sitemap.xml` in Google Search Console.
+`pnpm build:static` runs `vite build`, then `scripts/prerender.ts`, which renders every page (home, attorney, practice areas, cities, blog index and every published post) to static HTML with its real content, title, meta description, canonical URL, Open Graph image and JSON-LD (`LegalService`, `Attorney`, `BlogPosting`, `FAQPage`, `BreadcrumbList`). It also writes `404.html` (noindex), `sitemap.xml` (referenced by `robots.txt`) and `blog/rss.xml`. The build fails if any route doesn't render, so a broken page never ships. The canonical domain is `https://www.loronameadpllc.com` (`SITE.domain` in `client/src/lib/siteData.ts`).
+
+After deploying, in [Google Search Console](https://search.google.com/search-console) add the `https://www.loronameadpllc.com` property, submit `https://www.loronameadpllc.com/sitemap.xml`, and use URL Inspection → Request indexing on the home page.

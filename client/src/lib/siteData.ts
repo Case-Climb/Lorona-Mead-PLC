@@ -6,7 +6,7 @@ export const SITE = {
   phoneRaw: "6023856818",
   email: "jess@loronamead.com",
   address: "One Renaissance Tower, 2 N. Central Ave., Suite 1800, Phoenix, Arizona 85004",
-  domain: "arizonatrialattorneys.com",
+  domain: "www.loronameadpllc.com",
   rating: "5.0",
   reviewCount: "127",
   hours: [

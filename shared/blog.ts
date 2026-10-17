@@ -154,7 +154,7 @@ export function loadPosts(
     );
 }
 
-export const SITE_URL = "https://arizonatrialattorneys.com";
+export const SITE_URL = "https://www.loronameadpllc.com";
 
 export function postUrl(slug: string): string {
   return `${SITE_URL}/blog/${slug}`;

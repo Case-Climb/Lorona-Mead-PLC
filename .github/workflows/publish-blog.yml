@@ -70,7 +70,7 @@ jobs:
           pnpm blog:generate --count "$COUNT"
 
       - name: Type-check and build
-        run: pnpm check && npx vite build
+        run: pnpm check && pnpm build:static
 
       - name: Publish
         env:

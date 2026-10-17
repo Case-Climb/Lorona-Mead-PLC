@@ -16,7 +16,7 @@ export default function PracticeAreas() {
     <SEO
       title="Criminal Defense Practice Areas | Phoenix, AZ | Lorona Mead, PLC"
       description="Complete criminal defense practice areas in Phoenix, AZ. DUI, drug charges, assault, theft, weapons, expungements. Free consultation. Call (602) 385-6818."
-      canonical="https://arizonatrialattorneys.com/practice-areas"
+      canonical="https://www.loronameadpllc.com/practice-areas"
     />
       <section className="relative pt-40 pb-20 overflow-hidden">
         <div className="absolute inset-0">

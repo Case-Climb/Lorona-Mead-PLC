@@ -5,7 +5,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
 import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
-import { blogSeoPlugin } from "./scripts/vite-plugin-blog-seo";
 
 // =============================================================================
 // Manus Debug Collector - Vite Plugin
@@ -204,7 +203,33 @@ function vitePluginStorageProxy(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy(), blogSeoPlugin()];
+/**
+ * Drops the Umami analytics tag from index.html unless VITE_ANALYTICS_ENDPOINT
+ * is configured, so production pages don't request a "%VITE_...%" placeholder URL.
+ */
+function analyticsTagPlugin(): Plugin {
+  return {
+    name: "analytics-tag",
+    transformIndexHtml: {
+      order: "pre",
+      handler(html) {
+        if (process.env.VITE_ANALYTICS_ENDPOINT) return html;
+        return html.replace(/\s*<script\s+defer\s+src="%VITE_ANALYTICS_ENDPOINT%\/umami"[\s\S]*?<\/script>/, "");
+      },
+    },
+  };
+}
+
+// The Manus runtime (~370 KB inline script) is editor tooling; keep it out of production pages.
+const plugins = [
+  react(),
+  tailwindcss(),
+  jsxLocPlugin(),
+  { ...vitePluginManusRuntime(), apply: "serve" as const },
+  vitePluginManusDebugCollector(),
+  vitePluginStorageProxy(),
+  analyticsTagPlugin(),
+];
 
 export default defineConfig({
   plugins,

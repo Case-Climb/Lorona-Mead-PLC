@@ -9,6 +9,7 @@ import {
   CTASection,
 } from "@/components/Shared";
 import SEO from "@/components/SEO";
+import { breadcrumbSchema, firmSchema } from "@/lib/schema";
 
 export default function LocationPage({ slug }: { slug: string }) {
   const loc = LOCATIONS.find((l) => l.slug === slug);
@@ -21,7 +22,14 @@ export default function LocationPage({ slug }: { slug: string }) {
     <SEO
       title={`Criminal Defense Attorney ${loc.city} AZ | Lorona Mead, PLC`}
       description={`Aggressive, experienced criminal defense in ${loc.city}, ${loc.county}. Free consultation. Available 24/7. Call (602) 385-6818.`}
-      canonical={`https://arizonatrialattorneys.com/${loc.slug}`}
+      canonical={`https://www.loronameadpllc.com/${loc.slug}`}
+      schema={{
+        "@context": "https://schema.org",
+        "@graph": [
+          firmSchema(),
+          breadcrumbSchema([{ name: `${loc.city} Criminal Defense Attorney`, path: `/${loc.slug}` }]),
+        ],
+      }}
     />
       <section className="relative pt-40 pb-20 overflow-hidden">
         <div className="absolute inset-0">

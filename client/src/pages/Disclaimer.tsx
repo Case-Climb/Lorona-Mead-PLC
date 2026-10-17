@@ -8,7 +8,7 @@ export default function Disclaimer() {
     <SEO
       title="Disclaimer | Lorona Mead, PLC"
       description="Legal disclaimer for the Lorona Mead, PLC website. Attorney advertising. Prior results do not guarantee a similar outcome."
-      canonical="https://arizonatrialattorneys.com/disclaimer"
+      canonical="https://www.loronameadpllc.com/disclaimer"
     />
       <section className="relative pt-40 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#111418] to-[#0a0a0a]" />

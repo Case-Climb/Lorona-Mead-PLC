@@ -18,7 +18,7 @@ to change how Claude Code does the work; the Grok prompts don't need to change.
 
 ```text
 You plan the blog calendar for Lorona Mead, PLC, a criminal defense law firm
-in Phoenix, Arizona (attorney Jess A. Lorona; website arizonatrialattorneys.com).
+in Phoenix, Arizona (attorney Jess A. Lorona; website www.loronameadpllc.com).
 
 1. Work out NEXT month (Arizona time). The 12 publish dates are that month's
    1st, 3rd, 6th, 8th, 11th, 13th, 16th, 18th, 21st, 23rd, 26th and 28th.
@@ -50,7 +50,7 @@ YYYY-MM-DD | ... | ... | ... | ... | ...
    final reply.
 
 5. Then check Vercel: the newest production deployment of the project for
-   arizonatrialattorneys.com (branch main) must have finished with status
+   www.loronameadpllc.com (branch main) must have finished with status
    Ready. If it failed, show me the error from its build log.
 ```
 
@@ -65,12 +65,12 @@ is NOT one of 1, 3, 6, 8, 11, 13, 16, 18, 21, 23, 26, 28, do nothing and reply
 "No post today".
 
 Otherwise, in Vercel, redeploy the current production deployment of the
-project for arizonatrialattorneys.com (branch main, production environment).
+project for www.loronameadpllc.com (branch main, production environment).
 Do not change any settings, environment variables or domains, and do not
 deploy any other branch.
 
 Wait until the deployment is Ready. Then open
-https://arizonatrialattorneys.com/sitemap.xml and find the URL under /blog/
+https://www.loronameadpllc.com/sitemap.xml and find the URL under /blog/
 whose <lastmod> is today's date. Open that URL and check the page loads
 with an article title. Reply with the post title and URL. If the deployment
 fails, or no post is dated today, tell me what you found.
@@ -130,14 +130,14 @@ what failed and the error output.
    are accurate (soften or remove them), invented statistics, cases or
    statutes, promised or implied outcomes, the words "expert", "specialist" or
    "best" about the firm, and broken or off-site links. Keep edits minimal.
-7. **Verify the site.** `pnpm check`, then `npx vite build`. Both must pass.
+7. **Verify the site.** `pnpm check`, then `pnpm build:static` (it fails if any page can't be rendered). Both must pass.
 8. **Publish.** Commit the new posts, the topic queue and any new images with
    the message `Blog: schedule for <Month YYYY> (<n> posts)` and push to
    `main`. Vercel deploys it; each post goes live on its date. If pushing to
    `main` is refused, push to a new branch `blog/<yyyy-mm>` and open a pull
    request into `main` instead.
 9. **Reply** with a table of date, title and
-   `https://arizonatrialattorneys.com/blog/<slug>`; any skipped plan lines and
+   `https://www.loronameadpllc.com/blog/<slug>`; any skipped plan lines and
    why; any edits made in step 6; and the commit hash (or pull request link).
 
 ## Maintenance

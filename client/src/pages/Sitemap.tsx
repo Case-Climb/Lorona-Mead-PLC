@@ -10,7 +10,7 @@ export default function Sitemap() {
     <SEO
       title="Sitemap | Lorona Mead, PLC"
       description="Complete sitemap for Lorona Mead, PLC. Find all pages on our website including practice areas, service areas, blog, and legal pages."
-      canonical="https://arizonatrialattorneys.com/sitemap"
+      canonical="https://www.loronameadpllc.com/sitemap"
     />
       <section className="relative pt-40 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#111418] to-[#0a0a0a]" />

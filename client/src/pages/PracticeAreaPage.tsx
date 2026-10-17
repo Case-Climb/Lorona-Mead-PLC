@@ -22,7 +22,7 @@ export default function PracticeAreaPage({ slug }: { slug: string }) {
     <SEO
       title={`${area.title} Attorney in Phoenix | Lorona Mead, PLC`}
       description={`${area.blurb} Free consultation. Call (602) 385-6818.`}
-      canonical={`https://arizonatrialattorneys.com/criminal-defense/${area.slug}`}
+      canonical={`https://www.loronameadpllc.com/criminal-defense/${area.slug}`}
       schema={{
         "@context": "https://schema.org",
         "@type": "FAQPage",

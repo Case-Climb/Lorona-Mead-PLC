@@ -8,7 +8,7 @@ export default function PrivacyPolicy() {
     <SEO
       title="Privacy Policy | Lorona Mead, PLC"
       description="Privacy policy for the Lorona Mead, PLC website. How we collect, use, and protect your personal information."
-      canonical="https://arizonatrialattorneys.com/privacy-policy"
+      canonical="https://www.loronameadpllc.com/privacy-policy"
     />
       <section className="relative pt-40 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#111418] to-[#0a0a0a]" />

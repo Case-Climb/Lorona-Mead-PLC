@@ -20,6 +20,7 @@ import {
 } from "@/components/Shared";
 import FAQAccordion from "@/components/FAQAccordion";
 import SEO from "@/components/SEO";
+import { firmSchema } from "@/lib/schema";
 
 export default function Home() {
   return (
@@ -27,27 +28,15 @@ export default function Home() {
     <SEO
       title="Criminal Defense Attorney Phoenix AZ | Lorona Mead, PLC"
       description="Phoenix criminal defense attorney Jess A. Lorona. Aggressive, experienced criminal defense across all of Arizona. Free consultation. Available 24/7. Call (602) 385-6818."
-      canonical="https://arizonatrialattorneys.com/"
+      canonical="https://www.loronameadpllc.com/"
       schema={{
         "@context": "https://schema.org",
-        "@type": "LegalService",
-        "name": SITE.name,
-        "description": "Phoenix criminal defense attorney serving all of Arizona.",
-        "telephone": SITE.phone,
-        "email": SITE.email,
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "2 N. Central Ave., Suite 1800",
-          "addressLocality": "Phoenix",
-          "addressRegion": "AZ",
-          "postalCode": "85004",
-          "addressCountry": "US"
-        },
-        "aggregateRating": {
+        ...firmSchema(),
+        aggregateRating: {
           "@type": "AggregateRating",
-          "ratingValue": SITE.rating,
-          "reviewCount": SITE.reviewCount
-        }
+          ratingValue: SITE.rating,
+          reviewCount: SITE.reviewCount,
+        },
       }}
     />
       {/* HERO */}
