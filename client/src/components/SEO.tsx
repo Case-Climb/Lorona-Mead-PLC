@@ -9,6 +9,7 @@ type SEOProps = {
   type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
+  image?: string; // site path or absolute URL
 };
 
 export default function SEO({
@@ -19,6 +20,7 @@ export default function SEO({
   type = "website",
   publishedTime,
   modifiedTime,
+  image,
 }: SEOProps) {
   useEffect(() => {
     document.title = title;
@@ -39,6 +41,11 @@ export default function SEO({
     setMeta("og:type", type, "property");
     setMeta("og:site_name", SITE.name, "property");
     if (canonical) setMeta("og:url", canonical, "property");
+    const imageUrl = image
+      ? new URL(image, `https://${SITE.domain}`).href
+      : `https://${SITE.domain}/manus-storage/hero-phoenix-skyline_96c7b9a0.jpg`;
+    setMeta("og:image", imageUrl, "property");
+    setMeta("twitter:card", "summary_large_image");
 
     for (const prop of ["article:published_time", "article:modified_time"]) {
       document.querySelector(`meta[property="${prop}"]`)?.remove();
@@ -74,7 +81,7 @@ export default function SEO({
       const s = document.getElementById("page-schema");
       if (s) s.remove();
     };
-  }, [title, description, canonical, schema, type, publishedTime, modifiedTime]);
+  }, [title, description, canonical, schema, type, publishedTime, modifiedTime, image]);
 
   return null;
 }

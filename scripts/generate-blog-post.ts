@@ -3,19 +3,24 @@
  * client/src/content/blog/. Run by .github/workflows/publish-blog.yml on a
  * schedule (12 posts a month), or locally:
  *
- *   ANTHROPIC_API_KEY=... pnpm blog:generate            # one post
- *   ANTHROPIC_API_KEY=... pnpm blog:generate --count 3  # several
- *   pnpm blog:generate --dry-run                         # show the next topic + prompt, no API call
+ *   pnpm blog:generate              # one post
+ *   pnpm blog:generate --count 3    # several
+ *   pnpm blog:generate --dry-run    # show the next topic + prompt only
  *
- * Env: ANTHROPIC_API_KEY (required), BLOG_MODEL (default claude-opus-5-5).
+ * By default it runs Claude Code headless, so it works with a Claude Pro/Max
+ * subscription: locally after `claude` login, in CI with CLAUDE_CODE_OAUTH_TOKEN
+ * (from `claude setup-token`). If ANTHROPIC_API_KEY is set, it calls the
+ * Claude API instead. BLOG_MODEL optionally picks the model.
  */
 import fs from "node:fs";
 import path from "node:path";
+import { spawn } from "node:child_process";
 import Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
 import {
   BLOG_CONTENT_DIR,
   BLOG_TOPICS_FILE,
+  DEFAULT_BLOG_IMAGE,
   countWords,
   parseFrontmatter,
   serializePost,
@@ -26,7 +31,7 @@ import { LOCATIONS, PRACTICE_AREAS, SITE } from "../client/src/lib/siteData";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const POSTS_DIR = path.join(ROOT, BLOG_CONTENT_DIR);
-const MODEL = process.env.BLOG_MODEL || "claude-opus-5-5";
+const API_MODEL = process.env.BLOG_MODEL || "claude-opus-5-5";
 const MIN_WORDS = 900;
 const MAX_ATTEMPTS = 2;
 
@@ -40,6 +45,8 @@ type Topic = {
   category: string;
   location: string;
   notes?: string;
+  image?: string;
+  imageAlt?: string;
 };
 
 type ExistingPost = {
@@ -262,10 +269,72 @@ function checkDraft(draft: Draft, existing: ExistingPost[]): string[] {
 // ---------------------------------------------------------------------------
 // Claude
 
-async function requestDraft(client: Anthropic, prompt: string): Promise<Draft> {
+/** Claude Code CLI in headless mode, signed in with a Claude Pro/Max subscription. */
+function requestDraftClaudeCode(prompt: string): Promise<Draft> {
+  const args = [
+    "-p",
+    "--output-format",
+    "json",
+    "--json-schema",
+    JSON.stringify(OUTPUT_SCHEMA),
+    "--system-prompt",
+    SYSTEM_PROMPT,
+    "--tools",
+    "",
+    "--no-session-persistence",
+  ];
+  if (process.env.BLOG_MODEL) args.push("--model", process.env.BLOG_MODEL);
+
+  return new Promise((resolve, reject) => {
+    // An empty ANTHROPIC_API_KEY (unset CI secret) would shadow the subscription login
+    const env = { ...process.env };
+    if (!env.ANTHROPIC_API_KEY) delete env.ANTHROPIC_API_KEY;
+    const child = spawn("claude", args, {
+      env,
+      stdio: ["pipe", "pipe", "inherit"],
+    });
+    const timer = setTimeout(() => child.kill(), 20 * 60 * 1000);
+    let stdout = "";
+    child.stdout.on("data", chunk => (stdout += chunk));
+    child.on("error", err =>
+      reject(
+        new Error(
+          `Could not run Claude Code (${err.message}). Install it with: npm install -g @anthropic-ai/claude-code`
+        )
+      )
+    );
+    child.on("close", code => {
+      clearTimeout(timer);
+      try {
+        const result = JSON.parse(stdout);
+        if (result.is_error || result.subtype !== "success") {
+          throw new Error(
+            `Claude Code finished with ${result.subtype ?? `exit code ${code}`}: ${String(result.result ?? "").slice(0, 500)}`
+          );
+        }
+        const usage = Object.keys(result.modelUsage ?? {}).join(", ");
+        console.log(`  model=${usage || "default"} (Claude Code)`);
+        resolve(Draft.parse(result.structured_output));
+      } catch (err) {
+        reject(
+          err instanceof SyntaxError
+            ? new Error(
+                `Unexpected Claude Code output (exit ${code}): ${stdout.slice(0, 500)}`
+              )
+            : err
+        );
+      }
+    });
+    child.stdin.end(prompt);
+  });
+}
+
+/** Claude API, used instead when ANTHROPIC_API_KEY is set. */
+async function requestDraftApi(prompt: string): Promise<Draft> {
+  const client = new Anthropic();
   const message = await client.beta.messages
     .stream({
-      model: MODEL,
+      model: API_MODEL,
       max_tokens: 32000,
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
@@ -297,8 +366,25 @@ async function requestDraft(client: Anthropic, prompt: string): Promise<Draft> {
   return Draft.parse(JSON.parse(text));
 }
 
+const requestDraft = (prompt: string) =>
+  process.env.ANTHROPIC_API_KEY
+    ? requestDraftApi(prompt)
+    : requestDraftClaudeCode(prompt);
+
+/** The topic's pre-made image, else the practice area's photo, else the default. */
+function imageFor(topic: Topic | null, category: string): string {
+  if (
+    topic?.image &&
+    fs.existsSync(path.join(ROOT, "client/public", topic.image))
+  ) {
+    return topic.image;
+  }
+  return (
+    PRACTICE_AREAS.find(a => a.slug === category)?.image ?? DEFAULT_BLOG_IMAGE
+  );
+}
+
 async function writePost(
-  client: Anthropic,
   topic: Topic | null,
   existing: ExistingPost[],
   date: string
@@ -306,10 +392,7 @@ async function writePost(
   let issues: string[] = [];
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     console.log(`  attempt ${attempt}/${MAX_ATTEMPTS}`);
-    const draft = await requestDraft(
-      client,
-      userPrompt(topic, existing, issues)
-    );
+    const draft = await requestDraft(userPrompt(topic, existing, issues));
     issues = checkDraft(draft, existing);
     if (issues.length === 0) {
       const fm: BlogFrontmatter = {
@@ -324,6 +407,8 @@ async function writePost(
           8
         ),
         topicId: topic?.id ?? draft.slug,
+        image: imageFor(topic, draft.category),
+        imageAlt: topic?.imageAlt ?? draft.title,
         faqs: draft.faqs,
       };
       const file = path.join(POSTS_DIR, `${draft.slug}.md`);
@@ -366,7 +451,11 @@ async function main() {
     return;
   }
 
-  const client = new Anthropic();
+  console.log(
+    process.env.ANTHROPIC_API_KEY
+      ? `Using the Claude API (${API_MODEL})`
+      : "Using Claude Code (Claude Pro/Max subscription)"
+  );
   const published: { slug: string; title: string; words: number }[] = [];
   const skipped = new Set<string>();
   let failures = 0;
@@ -378,7 +467,7 @@ async function main() {
       `Writing: ${topic ? topic.workingTitle : "(Claude-chosen topic)"}`
     );
     try {
-      const post = await writePost(client, topic, existing, date);
+      const post = await writePost(topic, existing, date);
       published.push(post);
       console.log(
         `  saved ${path.relative(ROOT, post.file)} (${post.words} words)`

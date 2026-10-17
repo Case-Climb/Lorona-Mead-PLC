@@ -3,6 +3,7 @@ import path from "node:path";
 import type { Plugin } from "vite";
 import {
   BLOG_CONTENT_DIR,
+  DEFAULT_BLOG_IMAGE,
   SITE_URL,
   loadPosts,
   postSchema,
@@ -102,6 +103,7 @@ type PageMeta = {
   canonical: string;
   type: "website" | "article";
   publishedTime?: string;
+  image?: string; // site path
   schema?: object;
   body: string;
 };
@@ -114,6 +116,8 @@ function renderPage(template: string, meta: PageMeta): string {
     `<meta property="og:type" content="${meta.type}" />`,
     `<meta property="og:site_name" content="${escapeHtml(SITE.name)}" />`,
     `<meta property="og:url" content="${meta.canonical}" />`,
+    `<meta property="og:image" content="${SITE_URL}${meta.image ?? DEFAULT_BLOG_IMAGE}" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
     ...(meta.publishedTime
       ? [
           `<meta property="article:published_time" content="${meta.publishedTime}" />`,
@@ -187,6 +191,7 @@ export function blogSeoPlugin(): Plugin {
             canonical: postUrl(post.slug),
             type: "article",
             publishedTime: post.date,
+            image: post.image,
             schema: postSchema(post, SITE),
             body: shell(
               `<article><h1>${escapeHtml(post.title)}</h1><p>By ${escapeHtml(SITE.attorney)} &middot; <time datetime="${post.date}">${post.displayDate}</time></p>${post.html}${

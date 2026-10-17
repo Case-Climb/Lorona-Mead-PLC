@@ -6,6 +6,8 @@ date: "2024-12-10"
 category: "general"
 location: "arizona"
 keywords: ["felony vs misdemeanor Arizona","Arizona felony classes","Arizona misdemeanor penalties"]
+image: "/blog-images/felony-vs-misdemeanor-arizona.jpg"
+imageAlt: "Two stacks of case files of different heights with scales of justice"
 ---
 
 In Arizona, criminal offenses are categorized as either misdemeanors or felonies. The distinction is significant, as it affects the potential penalties, the court where your case is heard, and the long-term consequences of a conviction.

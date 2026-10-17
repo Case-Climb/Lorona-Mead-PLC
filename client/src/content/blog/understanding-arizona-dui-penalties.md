@@ -6,6 +6,8 @@ date: "2025-01-08"
 category: "dui"
 location: "arizona"
 keywords: ["Arizona DUI penalties","extreme DUI Arizona","aggravated DUI"]
+image: "/blog-images/understanding-arizona-dui-penalties.jpg"
+imageAlt: "Car key and judge's gavel on a dark desk"
 ---
 
 Arizona is known for having some of the strictest DUI laws in the United States. The penalties for a DUI conviction vary based on your blood alcohol concentration (BAC), prior offenses, and aggravating factors. Understanding these penalties is essential for anyone facing DUI charges.

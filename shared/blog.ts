@@ -12,6 +12,8 @@ import { marked } from "marked";
 export const BLOG_CONTENT_DIR = "client/src/content/blog";
 export const BLOG_TOPICS_FILE = "client/src/content/blog-topics.json";
 export const BLOG_TIMEZONE = "America/Phoenix";
+export const BLOG_IMAGES_DIR = "client/public/blog-images";
+export const DEFAULT_BLOG_IMAGE = "/manus-storage/law-library-dark_61c38fa6.jpg";
 
 export type BlogFAQ = { q: string; a: string };
 
@@ -25,10 +27,14 @@ export type BlogFrontmatter = {
   location?: string; // location slug or "arizona"
   keywords: string[];
   topicId?: string;
+  image?: string; // site path, e.g. /blog-images/<id>.jpg
+  imageAlt?: string;
   faqs?: BlogFAQ[];
 };
 
 export type BlogPost = BlogFrontmatter & {
+  image: string;
+  imageAlt: string;
   slug: string;
   body: string;
   html: string;
@@ -114,6 +120,8 @@ export function buildPost(slug: string, source: string): BlogPost {
     location: fm.location,
     keywords: Array.isArray(fm.keywords) ? fm.keywords : [],
     topicId: fm.topicId,
+    image: fm.image || DEFAULT_BLOG_IMAGE,
+    imageAlt: fm.imageAlt ?? "",
     faqs: Array.isArray(fm.faqs) ? fm.faqs : [],
     slug,
     body,
@@ -169,7 +177,7 @@ export function postSchema(post: BlogPost, site: SchemaSite): object {
       keywords: post.keywords.join(", "),
       mainEntityOfPage: url,
       url,
-      image: `${SITE_URL}/manus-storage/law-library-dark_61c38fa6.jpg`,
+      image: `${SITE_URL}${post.image}`,
       author: {
         "@type": "Person",
         name: site.attorney,

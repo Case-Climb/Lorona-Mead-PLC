@@ -1,5 +1,5 @@
 {
-  "_readme": "Queue of upcoming blog topics. The generator takes the first topic whose id has not been used by a post yet (posts record it as topicId). Reorder, edit, or add entries any time. category = practice area slug (dui, drug-charges, assault-domestic-violence, theft-white-collar, weapons-charges, expungements) or general. location = phoenix, scottsdale, mesa, tempe, or arizona. When the queue runs out, Claude picks a fresh topic automatically.",
+  "_readme": "Queue of upcoming blog topics. The generator takes the first topic whose id has not been used by a post yet (posts record it as topicId). Reorder, edit, or add entries any time. category = practice area slug (dui, drug-charges, assault-domestic-violence, theft-white-collar, weapons-charges, expungements) or general. location = phoenix, scottsdale, mesa, tempe, or arizona. When the queue runs out, Claude picks a fresh topic automatically. image/imageAlt: featured image for the post (pre-generated with Higgsfield into client/public/blog-images). Topics without one use the practice area's photo.",
   "topics": [
     {
       "id": "dui-first-offense-what-to-expect",
@@ -7,7 +7,9 @@
       "primaryKeyword": "first offense DUI Arizona",
       "category": "dui",
       "location": "phoenix",
-      "notes": "Walk through the timeline from arrest to resolution: MVD 15-day hearing deadline, arraignment, possible outcomes."
+      "notes": "Walk through the timeline from arrest to resolution: MVD 15-day hearing deadline, arraignment, possible outcomes.",
+      "image": "/blog-images/dui-first-offense-what-to-expect.jpg",
+      "imageAlt": "Car pulled over at night with police lights reflecting on a Phoenix street"
     },
     {
       "id": "drug-possession-penalties-arizona",
@@ -15,7 +17,9 @@
       "primaryKeyword": "drug possession penalties Arizona",
       "category": "drug-charges",
       "location": "arizona",
-      "notes": "Explain how Arizona classifies dangerous vs. narcotic drugs and why the distinction matters."
+      "notes": "Explain how Arizona classifies dangerous vs. narcotic drugs and why the distinction matters.",
+      "image": "/blog-images/drug-possession-penalties-arizona.jpg",
+      "imageAlt": "Sealed evidence bags and a legal pad on an attorney's desk"
     },
     {
       "id": "domestic-violence-charge-consequences",
@@ -23,7 +27,9 @@
       "primaryKeyword": "domestic violence charge Phoenix",
       "category": "assault-domestic-violence",
       "location": "phoenix",
-      "notes": "Release conditions, no-contact orders, and why the alleged victim cannot simply drop the charges."
+      "notes": "Release conditions, no-contact orders, and why the alleged victim cannot simply drop the charges.",
+      "image": "/blog-images/domestic-violence-charge-consequences.jpg",
+      "imageAlt": "Quiet Phoenix home at dusk with the porch light on"
     },
     {
       "id": "shoplifting-charges-arizona",
@@ -31,7 +37,9 @@
       "primaryKeyword": "shoplifting charges Arizona",
       "category": "theft-white-collar",
       "location": "arizona",
-      "notes": "How value thresholds and prior history affect charge levels; civil demand letters."
+      "notes": "How value thresholds and prior history affect charge levels; civil demand letters.",
+      "image": "/blog-images/shoplifting-charges-arizona.jpg",
+      "imageAlt": "Empty store aisle at night with a security camera"
     },
     {
       "id": "prohibited-possessor-arizona",
@@ -39,7 +47,9 @@
       "primaryKeyword": "prohibited possessor Arizona",
       "category": "weapons-charges",
       "location": "arizona",
-      "notes": "Who counts as a prohibited possessor and common defenses."
+      "notes": "Who counts as a prohibited possessor and common defenses.",
+      "image": "/blog-images/prohibited-possessor-arizona.jpg",
+      "imageAlt": "Locked gun safe in a dim room"
     },
     {
       "id": "restore-gun-rights-arizona",
@@ -47,7 +57,9 @@
       "primaryKeyword": "restore gun rights Arizona",
       "category": "expungements",
       "location": "arizona",
-      "notes": "Overview of firearm rights restoration after a conviction and how it relates to set-asides."
+      "notes": "Overview of firearm rights restoration after a conviction and how it relates to set-asides.",
+      "image": "/blog-images/restore-gun-rights-arizona.jpg",
+      "imageAlt": "Legal petition and fountain pen with a flag in the background"
     },
     {
       "id": "scottsdale-dui-checkpoints",
@@ -55,7 +67,9 @@
       "primaryKeyword": "Scottsdale DUI attorney",
       "category": "dui",
       "location": "scottsdale",
-      "notes": "Rights during traffic stops and checkpoints, field sobriety tests being voluntary, implied consent."
+      "notes": "Rights during traffic stops and checkpoints, field sobriety tests being voluntary, implied consent.",
+      "image": "/blog-images/scottsdale-dui-checkpoints.jpg",
+      "imageAlt": "Traffic cones and road flares on a palm-lined boulevard at night"
     },
     {
       "id": "tempe-underage-drinking-asu",
@@ -63,7 +77,9 @@
       "primaryKeyword": "underage DUI Tempe",
       "category": "dui",
       "location": "tempe",
-      "notes": "Zero-tolerance rule for drivers under 21, possible school consequences, protecting a student's future."
+      "notes": "Zero-tolerance rule for drivers under 21, possible school consequences, protecting a student's future.",
+      "image": "/blog-images/tempe-underage-drinking-asu.jpg",
+      "imageAlt": "College town lake and pedestrian bridge at night"
     },
     {
       "id": "mesa-assault-charges",
@@ -71,7 +87,9 @@
       "primaryKeyword": "assault charges Mesa AZ",
       "category": "assault-domestic-violence",
       "location": "mesa",
-      "notes": "Differences between simple and aggravated assault and self-defense considerations."
+      "notes": "Differences between simple and aggravated assault and self-defense considerations.",
+      "image": "/blog-images/mesa-assault-charges.jpg",
+      "imageAlt": "Empty courtroom gallery in morning light"
     },
     {
       "id": "arizona-marijuana-laws-what-is-still-illegal",
@@ -79,7 +97,9 @@
       "primaryKeyword": "Arizona marijuana laws",
       "category": "drug-charges",
       "location": "arizona",
-      "notes": "Possession limits, DUI-drug issues, sales without a license, and federal property."
+      "notes": "Possession limits, DUI-drug issues, sales without a license, and federal property.",
+      "image": "/blog-images/arizona-marijuana-laws-what-is-still-illegal.jpg",
+      "imageAlt": "Cannabis leaf shadow across an open law book and gavel"
     },
     {
       "id": "extreme-dui-vs-super-extreme",
@@ -87,7 +107,9 @@
       "primaryKeyword": "extreme DUI Arizona",
       "category": "dui",
       "location": "arizona",
-      "notes": "BAC thresholds, how penalties differ, and defenses focused on testing reliability."
+      "notes": "BAC thresholds, how penalties differ, and defenses focused on testing reliability.",
+      "image": "/blog-images/extreme-dui-vs-super-extreme.jpg",
+      "imageAlt": "Breath testing device with police lights blurred behind"
     },
     {
       "id": "criminal-record-employment-arizona",
@@ -95,7 +117,9 @@
       "primaryKeyword": "criminal record employment Arizona",
       "category": "expungements",
       "location": "arizona",
-      "notes": "Background checks, set-asides, record sealing options, and answering application questions honestly."
+      "notes": "Background checks, set-asides, record sealing options, and answering application questions honestly.",
+      "image": "/blog-images/criminal-record-employment-arizona.jpg",
+      "imageAlt": "Job application on a clipboard with the Phoenix skyline at evening"
     },
     {
       "id": "talking-to-police-should-you",
@@ -103,7 +127,9 @@
       "primaryKeyword": "talk to police without lawyer",
       "category": "general",
       "location": "arizona",
-      "notes": "Why voluntary statements hurt defendants; how to invoke the right to remain silent clearly."
+      "notes": "Why voluntary statements hurt defendants; how to invoke the right to remain silent clearly.",
+      "image": "/blog-images/talking-to-police-should-you.jpg",
+      "imageAlt": "Empty police interview room with a single overhead light"
     },
     {
       "id": "aggravated-dui-felony-arizona",
@@ -111,7 +137,9 @@
       "primaryKeyword": "aggravated DUI Arizona",
       "category": "dui",
       "location": "arizona",
-      "notes": "Common triggers for felony DUI and why early legal help matters."
+      "notes": "Common triggers for felony DUI and why early legal help matters.",
+      "image": "/blog-images/aggravated-dui-felony-arizona.jpg",
+      "imageAlt": "Lone car on a desert highway at night under storm clouds"
     },
     {
       "id": "drug-paraphernalia-charges",
@@ -119,7 +147,9 @@
       "primaryKeyword": "drug paraphernalia charge Arizona",
       "category": "drug-charges",
       "location": "arizona",
-      "notes": "What counts as paraphernalia, typical outcomes, and diversion options."
+      "notes": "What counts as paraphernalia, typical outcomes, and diversion options.",
+      "image": "/blog-images/drug-paraphernalia-charges.jpg",
+      "imageAlt": "Glass jar and pocket scale under a spotlight"
     },
     {
       "id": "order-of-protection-arizona",
@@ -127,7 +157,9 @@
       "primaryKeyword": "order of protection Arizona",
       "category": "assault-domestic-violence",
       "location": "arizona",
-      "notes": "How to respond, the right to request a hearing, and how violations can create new charges."
+      "notes": "How to respond, the right to request a hearing, and how violations can create new charges.",
+      "image": "/blog-images/order-of-protection-arizona.jpg",
+      "imageAlt": "Folded court document beside a cup of coffee"
     },
     {
       "id": "embezzlement-charges-arizona",
@@ -135,7 +167,9 @@
       "primaryKeyword": "embezzlement charges Arizona",
       "category": "theft-white-collar",
       "location": "arizona",
-      "notes": "How these cases are investigated and why not to talk to employers or investigators before getting counsel."
+      "notes": "How these cases are investigated and why not to talk to employers or investigators before getting counsel.",
+      "image": "/blog-images/embezzlement-charges-arizona.jpg",
+      "imageAlt": "Laptop with blurred spreadsheets and ledgers in a dark office"
     },
     {
       "id": "phoenix-criminal-court-process",
@@ -143,7 +177,9 @@
       "primaryKeyword": "Maricopa County criminal court process",
       "category": "general",
       "location": "phoenix",
-      "notes": "Initial appearance, arraignment, pretrial conferences, plea offers, trial, and sentencing."
+      "notes": "Initial appearance, arraignment, pretrial conferences, plea offers, trial, and sentencing.",
+      "image": "/blog-images/phoenix-criminal-court-process.jpg",
+      "imageAlt": "Grand courthouse hallway with marble floors"
     },
     {
       "id": "dui-blood-test-vs-breath-test",
@@ -151,7 +187,9 @@
       "primaryKeyword": "DUI blood test Arizona",
       "category": "dui",
       "location": "arizona",
-      "notes": "How each test works, common sources of error, and why test procedures matter in a defense."
+      "notes": "How each test works, common sources of error, and why test procedures matter in a defense.",
+      "image": "/blog-images/dui-blood-test-vs-breath-test.jpg",
+      "imageAlt": "Blood sample vials beside a breath testing device"
     },
     {
       "id": "drug-diversion-programs-maricopa",
@@ -159,7 +197,9 @@
       "primaryKeyword": "drug diversion program Maricopa County",
       "category": "drug-charges",
       "location": "phoenix",
-      "notes": "How diversion works in general terms, eligibility factors, and the benefit of avoiding a conviction."
+      "notes": "How diversion works in general terms, eligibility factors, and the benefit of avoiding a conviction.",
+      "image": "/blog-images/drug-diversion-programs-maricopa.jpg",
+      "imageAlt": "Desert path between saguaro cacti at sunrise"
     },
     {
       "id": "weapons-misconduct-arizona",
@@ -167,7 +207,9 @@
       "primaryKeyword": "misconduct involving weapons Arizona",
       "category": "weapons-charges",
       "location": "arizona",
-      "notes": "Common scenarios that lead to weapons charges despite Arizona's permissive gun laws."
+      "notes": "Common scenarios that lead to weapons charges despite Arizona's permissive gun laws.",
+      "image": "/blog-images/weapons-misconduct-arizona.jpg",
+      "imageAlt": "Empty leather holster beside an open law book"
     },
     {
       "id": "set-aside-vs-sealing-records",
@@ -175,7 +217,9 @@
       "primaryKeyword": "Arizona record sealing",
       "category": "expungements",
       "location": "arizona",
-      "notes": "Compare the two remedies and help readers understand which may fit their situation."
+      "notes": "Compare the two remedies and help readers understand which may fit their situation.",
+      "image": "/blog-images/set-aside-vs-sealing-records.jpg",
+      "imageAlt": "Archive boxes and a folder sealed with wax"
     },
     {
       "id": "probation-violation-arizona",
@@ -183,7 +227,9 @@
       "primaryKeyword": "probation violation Arizona",
       "category": "general",
       "location": "arizona",
-      "notes": "Technical vs. new-offense violations, the hearing process, and possible consequences."
+      "notes": "Technical vs. new-offense violations, the hearing process, and possible consequences.",
+      "image": "/blog-images/probation-violation-arizona.jpg",
+      "imageAlt": "Hourglass beside a closed case file"
     },
     {
       "id": "scottsdale-drug-charges-old-town",
@@ -191,7 +237,9 @@
       "primaryKeyword": "drug charges Scottsdale",
       "category": "drug-charges",
       "location": "scottsdale",
-      "notes": "Common scenarios, search-and-seizure issues, and protecting your record."
+      "notes": "Common scenarios, search-and-seizure issues, and protecting your record.",
+      "image": "/blog-images/scottsdale-drug-charges-old-town.jpg",
+      "imageAlt": "Desert-town nightlife street with string lights"
     },
     {
       "id": "disorderly-conduct-arizona",
@@ -199,7 +247,9 @@
       "primaryKeyword": "disorderly conduct Arizona",
       "category": "assault-domestic-violence",
       "location": "arizona",
-      "notes": "What the charge covers, domestic-violence designations, and potential defenses."
+      "notes": "What the charge covers, domestic-violence designations, and potential defenses.",
+      "image": "/blog-images/disorderly-conduct-arizona.jpg",
+      "imageAlt": "Empty street after midnight with a knocked-over chair"
     },
     {
       "id": "dui-license-suspension-mvd-hearing",
@@ -207,7 +257,9 @@
       "primaryKeyword": "Arizona MVD hearing DUI",
       "category": "dui",
       "location": "arizona",
-      "notes": "Admin per se suspension, how to request a hearing, and what the hearing decides."
+      "notes": "Admin per se suspension, how to request a hearing, and what the hearing decides.",
+      "image": "/blog-images/dui-license-suspension-mvd-hearing.jpg",
+      "imageAlt": "Driver's license face down beside car keys and an hourglass"
     },
     {
       "id": "identity-theft-charges-arizona",
@@ -215,7 +267,9 @@
       "primaryKeyword": "identity theft charges Arizona",
       "category": "theft-white-collar",
       "location": "arizona",
-      "notes": "Types of fraud charges and why digital evidence needs careful review."
+      "notes": "Types of fraud charges and why digital evidence needs careful review.",
+      "image": "/blog-images/identity-theft-charges-arizona.jpg",
+      "imageAlt": "Credit card on a laptop keyboard lit by the screen"
     },
     {
       "id": "mesa-dui-arrest",
@@ -223,7 +277,9 @@
       "primaryKeyword": "Mesa DUI lawyer",
       "category": "dui",
       "location": "mesa",
-      "notes": "Local court process overview, deadlines, and how to protect your license."
+      "notes": "Local court process overview, deadlines, and how to protect your license.",
+      "image": "/blog-images/mesa-dui-arrest.jpg",
+      "imageAlt": "Suburban desert road at night with distant police lights"
     },
     {
       "id": "federal-vs-state-drug-charges",
@@ -231,7 +287,9 @@
       "primaryKeyword": "federal drug charges Arizona",
       "category": "drug-charges",
       "location": "arizona",
-      "notes": "What makes a case federal, key differences in process and sentencing exposure."
+      "notes": "What makes a case federal, key differences in process and sentencing exposure.",
+      "image": "/blog-images/federal-vs-state-drug-charges.jpg",
+      "imageAlt": "Federal courthouse columns at dusk"
     },
     {
       "id": "bail-and-release-conditions-arizona",
@@ -239,7 +297,9 @@
       "primaryKeyword": "bail Arizona criminal case",
       "category": "general",
       "location": "phoenix",
-      "notes": "How release decisions are made at initial appearance and how to seek modified conditions."
+      "notes": "How release decisions are made at initial appearance and how to seek modified conditions.",
+      "image": "/blog-images/bail-and-release-conditions-arizona.jpg",
+      "imageAlt": "Corridor ending in a door opening to daylight"
     },
     {
       "id": "tempe-shoplifting-students",
@@ -247,7 +307,9 @@
       "primaryKeyword": "theft charges Tempe",
       "category": "theft-white-collar",
       "location": "tempe",
-      "notes": "Consequences for students, diversion possibilities, and protecting future opportunities."
+      "notes": "Consequences for students, diversion possibilities, and protecting future opportunities.",
+      "image": "/blog-images/tempe-shoplifting-students.jpg",
+      "imageAlt": "Campus walkway at dusk with a backpack on a bench"
     },
     {
       "id": "self-defense-laws-arizona",
@@ -255,7 +317,9 @@
       "primaryKeyword": "self defense law Arizona",
       "category": "assault-domestic-violence",
       "location": "arizona",
-      "notes": "Overview of justification defenses and the importance of evidence in self-defense claims."
+      "notes": "Overview of justification defenses and the importance of evidence in self-defense claims.",
+      "image": "/blog-images/self-defense-laws-arizona.jpg",
+      "imageAlt": "Front door deadbolt under a porch light at night"
     },
     {
       "id": "dui-drugs-prescription-arizona",
@@ -263,7 +327,9 @@
       "primaryKeyword": "prescription drug DUI Arizona",
       "category": "dui",
       "location": "arizona",
-      "notes": "Impairment vs. metabolite issues and how lawful prescriptions factor into a defense."
+      "notes": "Impairment vs. metabolite issues and how lawful prescriptions factor into a defense.",
+      "image": "/blog-images/dui-drugs-prescription-arizona.jpg",
+      "imageAlt": "Prescription bottle and car keys on a nightstand"
     },
     {
       "id": "what-to-ask-criminal-defense-attorney",
@@ -271,7 +337,9 @@
       "primaryKeyword": "hire criminal defense attorney Phoenix",
       "category": "general",
       "location": "phoenix",
-      "notes": "Practical hiring guide: experience, trial history, communication, fees, strategy."
+      "notes": "Practical hiring guide: experience, trial history, communication, fees, strategy.",
+      "image": "/blog-images/what-to-ask-criminal-defense-attorney.jpg",
+      "imageAlt": "Law office desk with two leather chairs and a city view"
     },
     {
       "id": "felony-reduced-to-misdemeanor-arizona",
@@ -279,7 +347,9 @@
       "primaryKeyword": "felony reduced to misdemeanor Arizona",
       "category": "expungements",
       "location": "arizona",
-      "notes": "Class 6 designation, plea negotiations, and post-sentence options."
+      "notes": "Class 6 designation, plea negotiations, and post-sentence options.",
+      "image": "/blog-images/felony-reduced-to-misdemeanor-arizona.jpg",
+      "imageAlt": "Brass balance scale tipped to one side"
     },
     {
       "id": "search-and-seizure-rights-arizona",
@@ -287,7 +357,9 @@
       "primaryKeyword": "illegal search Arizona",
       "category": "general",
       "location": "arizona",
-      "notes": "Consent, probable cause, and how unlawful searches can lead to suppressed evidence."
+      "notes": "Consent, probable cause, and how unlawful searches can lead to suppressed evidence.",
+      "image": "/blog-images/search-and-seizure-rights-arizona.jpg",
+      "imageAlt": "Open car trunk lit by a flashlight beam at night"
     }
   ]
 }

@@ -6,6 +6,8 @@ date: "2024-12-20"
 category: "expungements"
 location: "arizona"
 keywords: ["Arizona set aside","expungement Arizona","clear criminal record Arizona"]
+image: "/blog-images/how-to-get-criminal-record-set-aside-arizona.jpg"
+imageAlt: "Hand closing a file folder at sunrise over the desert"
 ---
 
 Having a criminal record can affect your ability to get a job, secure housing, obtain professional licenses, and more. While Arizona does not have a traditional expungement process, the state does offer a legal mechanism called a set-aside judgment that can help you move forward.

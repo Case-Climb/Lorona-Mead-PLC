@@ -61,6 +61,14 @@ export default function Blog() {
                   href={`/blog/${post.slug}`}
                   className="group block bg-[#111418] border border-white/5 rounded-lg overflow-hidden hover:border-[#C9A84C]/30 transition-all h-full"
                 >
+                  <div className="aspect-[16/9] overflow-hidden">
+                    <img
+                      src={post.image}
+                      alt={post.imageAlt}
+                      loading={i < 2 ? "eager" : "lazy"}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
                   <div className="p-6">
                     <div className="flex items-center gap-3 text-xs text-white/40 mb-4">
                       <span className="text-[#C9A84C]/80">{categoryLabel(post.category)}</span>

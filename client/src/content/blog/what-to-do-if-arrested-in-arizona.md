@@ -6,6 +6,8 @@ date: "2025-01-15"
 category: "general"
 location: "arizona"
 keywords: ["arrested in Arizona","your rights after arrest","Phoenix criminal defense attorney"]
+image: "/blog-images/what-to-do-if-arrested-in-arizona.jpg"
+imageAlt: "Calm folded hands on a wooden table under a desk lamp"
 ---
 
 Being arrested in Arizona is a serious and frightening experience. The decisions you make in the hours and days following an arrest can significantly impact the outcome of your case. Understanding your rights and taking the right steps is critical to protecting your freedom.
