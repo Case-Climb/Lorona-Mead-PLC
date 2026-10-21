@@ -2,6 +2,37 @@
   "_readme": "Queue of upcoming blog topics. The generator takes the first topic whose id has not been used by a post yet (posts record it as topicId). Reorder, edit, or add entries any time. category = practice area slug (dui, drug-charges, assault-domestic-violence, theft-white-collar, weapons-charges, expungements) or general. location = phoenix, scottsdale, mesa, tempe, or arizona. When the queue runs out, Claude picks a fresh topic automatically. image/imageAlt: featured image for the post (pre-generated with Higgsfield into client/public/blog-images). Topics without one use the practice area's photo.",
   "topics": [
     {
+      "id": "tempe-underage-drinking-asu",
+      "workingTitle": "Underage Drinking Charges in Tempe: What Students Should Know Before Halloween",
+      "primaryKeyword": "underage drinking charge tempe",
+      "category": "general",
+      "location": "tempe",
+      "notes": "A.R.S. 4-244 minor in possession/consumption; fake ID issues; diversion options; effect on school and record; calm, helpful tone",
+      "image": "/blog-images/tempe-underage-drinking-asu.jpg",
+      "imageAlt": "College town lake and pedestrian bridge at night",
+      "publishDate": "2026-10-23"
+    },
+    {
+      "id": "marijuana-dui-phoenix",
+      "workingTitle": "Marijuana DUI in Phoenix: How Arizona Handles Impaired Driving Under Prop 207",
+      "primaryKeyword": "marijuana dui phoenix",
+      "category": "dui",
+      "location": "phoenix",
+      "notes": "A.R.S. 28-1381(A)(1) impairment standard; metabolite rule history; field sobriety and blood tests; medical card holders; verify current law before citing",
+      "publishDate": "2026-10-26"
+    },
+    {
+      "id": "probation-violation-arizona",
+      "workingTitle": "Probation Violations in Mesa: What Happens and How to Respond",
+      "primaryKeyword": "probation violation mesa",
+      "category": "general",
+      "location": "mesa",
+      "notes": "technical vs. new-offense violations; Rule 27 hearings in Maricopa County; possible outcomes; why to act quickly",
+      "image": "/blog-images/probation-violation-arizona.jpg",
+      "imageAlt": "Hourglass beside a closed case file",
+      "publishDate": "2026-10-28"
+    },
+    {
       "id": "mesa-dui-arrest",
       "workingTitle": "What to Do After a Halloween Weekend DUI Arrest in Scottsdale",
       "primaryKeyword": "scottsdale dui lawyer",
@@ -156,16 +187,6 @@
       "imageAlt": "Legal petition and fountain pen with a flag in the background"
     },
     {
-      "id": "tempe-underage-drinking-asu",
-      "workingTitle": "Underage Drinking and DUI Charges for ASU Students in Tempe",
-      "primaryKeyword": "underage DUI Tempe",
-      "category": "dui",
-      "location": "tempe",
-      "notes": "Zero-tolerance rule for drivers under 21, possible school consequences, protecting a student's future.",
-      "image": "/blog-images/tempe-underage-drinking-asu.jpg",
-      "imageAlt": "College town lake and pedestrian bridge at night"
-    },
-    {
       "id": "arizona-marijuana-laws-what-is-still-illegal",
       "workingTitle": "Arizona Marijuana Laws: What Is Still Illegal After Legalization",
       "primaryKeyword": "Arizona marijuana laws",
@@ -274,16 +295,6 @@
       "notes": "Common scenarios that lead to weapons charges despite Arizona's permissive gun laws.",
       "image": "/blog-images/weapons-misconduct-arizona.jpg",
       "imageAlt": "Empty leather holster beside an open law book"
-    },
-    {
-      "id": "probation-violation-arizona",
-      "workingTitle": "Probation Violations in Arizona: What Happens Next",
-      "primaryKeyword": "probation violation Arizona",
-      "category": "general",
-      "location": "arizona",
-      "notes": "Technical vs. new-offense violations, the hearing process, and possible consequences.",
-      "image": "/blog-images/probation-violation-arizona.jpg",
-      "imageAlt": "Hourglass beside a closed case file"
     },
     {
       "id": "scottsdale-drug-charges-old-town",
